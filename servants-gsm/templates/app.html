@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2b6f77">
+<title>Gestion des servants – Saint François d’Assise</title>
+<style>
+:root{--bg:#f4f2ec;--sf:#fcfbf8;--ink:#1d2a2d;--mu:#5b6a6c;--ln:#dcdad0;--ac:#2b6f77;--go:#4fa3a8;--ok:#2f7a4b;--no:#b3432f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121a1c;--sf:#1a2528;--ink:#e9efee;--mu:#9fb0b2;--ln:#2a3a3d;--ac:#8cd0d4;--go:#5fb3b8;--ok:#5fc084;--no:#ef8b76;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121a1c;--sf:#1a2528;--ink:#e9efee;--mu:#9fb0b2;--ln:#2a3a3d;--ac:#8cd0d4;--go:#5fb3b8;--ok:#5fc084;--no:#ef8b76;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{padding:20px 16px 12px;text-align:center;border-bottom:3px double var(--go)}
+header small{display:block;color:var(--mu);letter-spacing:.08em;text-transform:uppercase;font-size:11px}
+h1{font:700 22px "Segoe UI",system-ui,sans-serif;margin:6px 0 2px;color:var(--ac)}
+nav{display:flex;gap:6px;overflow-x:auto;padding:10px 12px;justify-content:center;flex-wrap:wrap}
+button,select,input{font:inherit;color:var(--ink)}
+nav button{border:1px solid var(--ln);background:var(--sf);padding:8px 14px;border-radius:999px;cursor:pointer}
+nav button.on{background:var(--ac);color:var(--bg);border-color:var(--ac)}
+main{max-width:980px;margin:0 auto;padding:8px 12px 40px}
+h2{font:700 19px "Segoe UI",system-ui,sans-serif;color:var(--ac);margin:14px 0 10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:12px;padding:14px}
+.card b{display:block;font:700 26px "Segoe UI",system-ui,sans-serif;color:var(--ac)}
+.card span{color:var(--mu);font-size:13px}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:14px}.row i{flex:0 0 110px;font-style:normal}
+.row div{height:14px;background:var(--go);border-radius:4px;min-width:2px}.row em{font-style:normal;color:var(--mu)}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.tools input,.tools select,dialog input,dialog select,td input{border:1px solid var(--ln);background:var(--sf);border-radius:8px;padding:7px 9px}
+.tools input[type=search]{flex:1;min-width:160px}
+.btn{background:var(--ac);color:var(--bg);border:0;border-radius:8px;padding:8px 14px;cursor:pointer}
+.btn.g{background:transparent;color:var(--ac);border:1px solid var(--ac)}.btn.r{background:var(--no);color:#fff}
+.wrap{overflow-x:auto;border:1px solid var(--ln);border-radius:12px;background:var(--sf)}
+table{border-collapse:collapse;width:100%;min-width:560px}
+th,td{padding:7px 10px;text-align:left;border-bottom:1px solid var(--ln);font-size:14px}
+th{background:var(--bg);color:var(--mu);font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+td input{width:100%;min-width:80px;padding:5px 7px}td input[type=number]{width:110px}
+tr.clk{cursor:pointer}tr.clk:hover{background:var(--bg)}
+tfoot td{font-weight:700;background:var(--bg)}
+.tag{font-size:12px;padding:2px 8px;border-radius:999px;background:var(--bg);border:1px solid var(--ln)}
+.ok{color:var(--ok)}.no{color:var(--no)}.mu{color:var(--mu)}
+dialog{border:1px solid var(--ln);border-radius:14px;background:var(--sf);color:var(--ink);padding:18px;width:min(420px,92vw)}
+dialog::backdrop{background:rgba(0,0,0,.5)}
+dialog label{display:block;margin:8px 0 2px;font-size:13px;color:var(--mu)}dialog input,dialog select{width:100%}
+.acts{display:flex;gap:8px;justify-content:flex-end;margin-top:14px;flex-wrap:wrap}
+.dot{display:inline-block;width:14px;height:14px;border-radius:50%;border:1px solid var(--mu);vertical-align:-2px;margin-right:6px}
+footer{text-align:center;color:var(--mu);font-size:12px;padding:10px}
+html{-webkit-text-size-adjust:100%}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent}button,input,select,summary,label{touch-action:manipulation}
+.sb{min-width:640px}
+.fab{display:none;position:fixed;right:16px;bottom:calc(84px + env(safe-area-inset-bottom,0px));width:58px;height:58px;border-radius:50%;background:var(--ac);color:var(--bg);font-size:32px;line-height:1;border:0;box-shadow:0 3px 12px rgba(0,0,0,.4);z-index:18;align-items:center;justify-content:center;padding:0}
+.pay{min-height:44px;min-width:130px;padding:8px 14px;border-radius:10px;border:1.5px solid var(--ln);background:var(--sf);color:var(--mu);font-weight:600;cursor:pointer}.pay.on{background:var(--ok);color:var(--bg);border-color:var(--ok)}
+.fr{padding:10px 14px;border-bottom:1px solid var(--ln)}.fr:last-child{border:0}
+.mb{display:none}.bn{display:none}
+.chip{position:fixed;left:50%;transform:translateX(-50%);bottom:16px;background:var(--ac);color:var(--bg);padding:8px 18px;border-radius:999px;font-weight:700;z-index:15;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+tbody tr:has(input[type=checkbox]:checked){background:rgba(79,163,168,.2)}
+#mo{margin:auto 0 0;max-width:none;width:100%;border-radius:16px 16px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px))}
+@media(max-width:700px){
+nav:not(.bn){display:none}
+.bn{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--sf);border-top:1px solid var(--ln);padding:4px 4px calc(4px + env(safe-area-inset-bottom,0px))}
+.bn button{flex:1;border:0;border-radius:10px;background:none;color:var(--mu);padding:6px 2px;font-size:11px;display:flex;flex-direction:column;align-items:center;gap:2px;min-height:54px}
+.bn button i{font-style:normal;font-size:21px;line-height:1}
+.bn button.on{background:none;color:var(--ac);font-weight:700}
+.chip{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+main{padding:8px 10px 120px}
+header{padding:14px 10px 8px}h1{font-size:19px}
+.btn,select,.tools input,td input,dialog input,dialog select{min-height:46px;font-size:16px}
+.btn{padding:10px 16px}
+.tools>*{flex:1 1 auto}.tools input[type=search]{flex:1 1 100%}
+.grid{grid-template-columns:1fr 1fr}
+.wrap table{min-width:0}.wrap td{padding:12px 8px}
+td input[type=checkbox]{width:28px!important;height:28px!important;min-height:0}
+td input[type=number]{width:100%}
+.mb{display:inline}
+.st thead{display:none}
+.st tbody tr{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px;border-bottom:1px solid var(--ln)}
+.st tbody td{border:0;padding:0}
+.st tbody td:nth-child(1),.st tbody td:nth-child(3){display:none}
+.st tbody td:nth-child(2){grid-column:1/-1;font-weight:600}
+.st tfoot tr{display:flex;flex-wrap:wrap;gap:10px;padding:10px}.st tfoot td{padding:0;border:0}
+.sd tbody td:nth-child(4),.sd tbody td:nth-child(7){grid-column:1/-1}
+.sd tbody td:nth-child(7)::before{content:"Reste : ";color:var(--mu);font-weight:400}
+.ss tbody td:nth-child(5)::before{content:"Messes servies : ";color:var(--mu)}
+.sc tbody td:nth-child(6){grid-column:1/-1}.sc tbody td:nth-child(6)::before{content:"Manquant : ";color:var(--mu)}
+.sd .pay{width:100%}
+.sb{min-width:0}.sb thead th:nth-child(2),.sb thead th:nth-child(4),.sb thead th:nth-child(n+5):not(:last-child),.sb tbody td:nth-child(2),.sb tbody td:nth-child(4),.sb tbody td:nth-child(n+5):not(:last-child){display:none}
+.cl thead{display:none}.cl tbody tr{display:grid;grid-template-columns:78px 1fr auto;gap:2px 10px;padding:10px 12px;border-bottom:1px solid var(--ln);align-items:center}.cl tbody td{border:0;padding:0}.cl tbody td:nth-child(1){grid-row:1/3}.cl tbody td:nth-child(2){font-weight:600}.cl tbody td:nth-child(3){grid-column:2;font-size:13px}.cl tbody td:nth-child(4){grid-column:3;grid-row:1/3}.cl tr.mh{display:block}
+dialog:not(#mo){margin:auto 0 0;width:100%;max-width:none;border-radius:16px 16px 0 0;max-height:92vh;overflow:auto;padding-bottom:calc(18px + env(safe-area-inset-bottom,0px))}
+.fab{display:flex}body.kb .bn,body.kb .chip,body.kb .fab{display:none}
+}
+header{position:relative}#hb{position:absolute;right:10px;top:10px;padding:6px 12px;font-size:13px}
+body.pub nav,body.pub .bn,body.pub .fab,body.pub .chip{display:none!important}
+.hero{padding:30px 18px;text-align:center;border-radius:16px;background:linear-gradient(135deg,#1f565d,#2b6f77 60%,#3b8d93);color:#fff;margin:14px 0}
+.hero small{letter-spacing:.1em;text-transform:uppercase;font-size:11px;opacity:.85}.hero h2{color:#fff;font-size:28px;margin:8px 0 4px}.hero p{margin:4px 0;opacity:.93}
+.hero .tools{justify-content:center;margin-top:16px}.hero .btn{background:#fff;color:#1f565d;font-weight:700;padding:11px 20px;border-radius:999px}.hero .btn.g{background:transparent;color:#fff;border:1.5px solid #fff}
+.post{display:flex;gap:14px;background:var(--sf);border:1px solid var(--ln);border-left:5px solid var(--go);border-radius:12px;padding:14px;margin:10px 0}
+.post.hot{border-left-color:var(--ac);box-shadow:0 2px 10px rgba(43,111,119,.18)}
+.dt{flex:0 0 58px;text-align:center}.dt b{display:block;font:700 28px/1.1 "Segoe UI",system-ui,sans-serif;color:var(--ac)}.dt span{font-size:12px;text-transform:uppercase;color:var(--mu);letter-spacing:.05em}
+.post h3{margin:6px 0 4px;font:700 17px "Segoe UI",system-ui,sans-serif}.post p{margin:0;font-size:13.5px}
+.tag.hot{background:var(--ac);color:var(--bg);border-color:var(--ac);font-weight:700}
+h3.mo{margin:22px 0 4px;color:var(--ac);font:700 15px "Segoe UI",system-ui,sans-serif;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--ln);padding-bottom:4px}
+.toast{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);background:var(--ok);color:#fff;padding:7px 16px;border-radius:999px;font-weight:700;font-size:13px;z-index:40;opacity:0;transition:opacity .2s;pointer-events:none}.toast.on{opacity:1}
+@media(max-width:700px){
+header{padding:14px 12px 10px}h1{font-size:19px}#hb{position:static;display:block;margin:8px auto 0;min-height:42px}
+.btn,.pay{min-height:46px}input:not([type=checkbox]),select{font-size:16px!important;min-height:46px}
+input[type=checkbox]{width:26px!important;height:26px!important}
+.tools{gap:8px}.tools .btn{flex:1 1 auto}th,td{padding:11px 10px}
+.hero{padding:22px 14px}.hero h2{font-size:23px}.hero .btn{flex:1 1 100%}
+.post{padding:12px;gap:10px}.dt{flex-basis:46px}.dt b{font-size:24px}.post h3{font-size:16px}
+main{padding-bottom:96px}}
+html{scroll-behavior:smooth}
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes pop{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
+@keyframes sheet{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+@keyframes grad{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes flo{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-14px) rotate(5deg)}}
+@keyframes pls{0%{box-shadow:0 0 0 0 rgba(255,255,255,.7)}100%{box-shadow:0 0 0 8px rgba(255,255,255,0)}}
+@keyframes bnc{0%{transform:scale(1)}40%{transform:scale(1.35) translateY(-3px)}100%{transform:scale(1)}}
+@keyframes spOut{to{opacity:0;visibility:hidden}}
+@keyframes spBar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes spIn{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:none}}
+@keyframes spRing{0%{box-shadow:0 0 0 0 rgba(255,255,255,.45)}100%{box-shadow:0 0 0 26px rgba(255,255,255,0)}}
+body.sp{--d:7.5s}
+main.pg{animation:fade .45s ease var(--d,0s) both}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+h3.mo.rv{transform:translateX(-22px)}
+.rv.in{opacity:1;transform:none}
+.hero{position:relative;overflow:hidden;background-size:220% 220%;animation:grad 12s ease infinite}
+.hero>*{position:relative;z-index:1}
+.hero::before{content:"✝";position:absolute;right:-6px;top:-20px;font-size:130px;opacity:.1;animation:flo 6s ease-in-out infinite}
+.hero small,.hero h2,.hero p,.hero .tools{animation:up .7s ease both;animation-delay:calc(var(--d,0s) + .05s)}
+.hero h2{animation-delay:calc(var(--d,0s) + .18s)}.hero p{animation-delay:calc(var(--d,0s) + .3s)}.hero .tools{animation-delay:calc(var(--d,0s) + .48s)}
+.tag.hot::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:currentColor;margin-right:6px;animation:pls 1.6s infinite}
+.btn,.pay,nav button{transition:transform .15s,filter .15s}.btn:active,.pay:active,nav button:active{transform:scale(.95)}@media(hover:hover){.btn:hover{filter:brightness(1.1)}}
+.bn button.on i{animation:bnc .45s ease}
+dialog[open]{animation:pop .25s ease}dialog[open]::backdrop{animation:fade .25s ease}
+#spg{position:fixed;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--go),var(--ac));transform-origin:0 50%;transform:scaleX(0);z-index:60;pointer-events:none}
+#sp{position:fixed;inset:0;z-index:100;background:linear-gradient(160deg,#173f45,#2b6f77);color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;animation:spOut .65s ease 7.45s forwards}
+.spc{width:86px;height:86px;border-radius:50%;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;font-size:44px;margin:0 auto 18px;animation:spIn .7s cubic-bezier(.2,1.3,.4,1) both,spRing 1.8s ease-out .6s infinite}
+#sp b{display:block;font:700 19px "Segoe UI",system-ui,sans-serif;animation:up .7s .25s ease both}#sp small{display:block;opacity:.8;margin-top:4px;animation:up .7s .4s ease both}
+.spb{width:150px;height:3px;background:rgba(255,255,255,.25);margin:22px auto 0;border-radius:3px;overflow:hidden}.spb i{display:block;height:100%;background:#fff;transform-origin:0 50%;transform:scaleX(0)}
+@media(max-width:700px){dialog[open]{animation:sheet .32s cubic-bezier(.2,.8,.2,1)}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}#sp{display:none}}
+@media print{.rv{opacity:1!important;transform:none!important}#sp,#spg{display:none!important}}
+.spc{position:relative}#sp .spw{position:relative;z-index:1;padding:0 20px}
+#sp::before{content:"";position:absolute;width:440px;height:440px;max-width:120vw;border-radius:50%;background:radial-gradient(circle,rgba(255,217,138,.3),transparent 65%);animation:brt 3.5s ease-in-out infinite}
+@keyframes brt{0%,100%{opacity:.5;transform:scale(.9)}50%{opacity:1;transform:scale(1.15)}}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes tw{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:.9;transform:scale(1.5)}}@keyframes shim{to{background-position:-220% 0}}
+@keyframes shk{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}@keyframes rpl{to{transform:scale(2.2);opacity:0}}
+@keyframes shn{0%{left:-60%}60%,100%{left:130%}}@keyframes glw{0%,100%{box-shadow:0 0 0 0 rgba(179,67,47,0)}50%{box-shadow:0 0 0 5px rgba(179,67,47,.2)}}
+#sps{position:absolute;inset:0;overflow:hidden}.stz{position:absolute;border-radius:50%;background:#fff;opacity:0;animation:tw 3s ease-in-out infinite}
+.orb{position:absolute;inset:-16px;animation:spin 5s linear infinite}.orb i{position:absolute;top:-4px;left:50%;margin-left:-4px;width:8px;height:8px;border-radius:50%;background:#ffd98a;box-shadow:0 0 12px #ffd98a}
+.orb.o2{inset:-32px;animation-duration:8s;animation-direction:reverse}.orb.o2 i{width:6px;height:6px;background:#fff;box-shadow:0 0 10px #fff}
+#sp b{background:linear-gradient(90deg,#fff 35%,#ffd98a 50%,#fff 65%) 0 0/220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:up .7s .25s ease both,shim 3.5s linear 1s infinite}
+.spm{height:22px;margin-top:22px;font-size:14px;opacity:.92;animation:fade .5s ease}.spp{margin-top:8px;font:700 13px system-ui,sans-serif;letter-spacing:.12em;opacity:.85}
+.spk{position:absolute;bottom:calc(26px + env(safe-area-inset-bottom,0px));left:0;right:0;font-size:12px;letter-spacing:.2em;text-transform:uppercase;opacity:.7;animation:fade 1s 1.5s both}
+.btn,.pay{position:relative;overflow:hidden}.rp{position:absolute;border-radius:50%;background:currentColor;opacity:.25;transform:scale(0);animation:rpl .55s ease-out forwards;pointer-events:none}
+.hero .btn:not(.g)::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.8),transparent);transform:skewX(-20deg);animation:shn 3.5s ease-in-out 8.5s infinite}
+a.btn{text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--ac)!important;box-shadow:0 0 0 3px rgba(79,163,168,.28)}
+.shake{animation:shk .35s;border-color:var(--no)!important}
+dialog textarea,.cf textarea{width:100%;border:1px solid var(--ln);background:var(--sf);border-radius:8px;padding:8px 9px;font:inherit;color:var(--ink);min-height:100px;resize:vertical}
+.cf label{display:block;margin:10px 0 3px;font-size:13px;color:var(--mu)}.cf input,.cf select{width:100%;border:1px solid var(--ln);background:var(--sf);border-radius:8px;padding:8px 9px}
+.btn.wa{background:#25a15a;color:#fff;width:100%;margin-top:14px;font-weight:700;min-height:50px;font-size:16px}
+.pa{margin-left:auto;display:flex;flex-direction:column;gap:6px;align-self:flex-start}.pa:empty{display:none}.pa .btn{padding:6px 10px;min-height:40px;font-size:15px}
+.post.imp{border-left-color:var(--no);animation:glw 2.4s ease-in-out infinite}.post.ann .dt b{font-size:24px}#ct,#pg{scroll-margin-top:12px}
+body.off main,body.off .bn,body.off .fab{pointer-events:none;opacity:.5;filter:grayscale(.5);transition:opacity .3s}
+@media print{.pa,#ct,.cf{display:none!important}}
+@media print{#hb,nav,.bn,.chip,.fab,.tools,.acts,footer{display:none!important}body{background:#fff;color:#000}.wrap{border:0}td input{border:0;background:none;color:#000}}
+</style></head><body class="pub sp"><div id="spg"></div><div id="sp"><div id="sps"></div><div class="spw"><div class="spc"><div class="orb"><i></i></div><div class="orb o2"><i></i></div>✝</div><b>Paroisse Saint François d’Assise</b><small>Groupe des servants d’autel</small><div class="spm" id="spm"></div><div class="spb"><i id="spi"></i></div><div class="spp" id="spp">0%</div></div><div class="spk">Piété · Pureté · Courage · Service</div></div>
+<header><small>Archidiocèse de Brazzaville · Conseil pastoral paroissial · Commission de la liturgie</small>
+<h1>Paroisse Saint François d’Assise</h1><small>Groupe des servants d’autel · 06 600 5625 / 06 683 5277</small><small id="sy" style="margin-top:4px"></small><button class="btn g" id="hb" onclick="hbClick()"></button></header>
+<nav><button data-t="dash" onclick="go('dash')">Tableau de bord</button><button data-t="serv" onclick="go('serv')">Servants</button><button data-t="prog" onclick="go('prog')">Programme</button><button data-t="mess" onclick="go('mess')">Messes</button><button data-t="reu" onclick="go('reu')">Réunions</button><button data-t="bilan" onclick="go('bilan')">Bilan messes</button><button data-t="droits" onclick="go('droits')">Droits statutaires</button><button data-t="cot" onclick="go('cot')">Cotisations diverses</button><button data-t="cal" onclick="go('cal')">Calendrier liturgique</button></nav>
+<main id="main"></main>
+<nav class="bn"><button data-t="dash" onclick="go('dash')"><i>🏠</i>Accueil</button><button data-t="mess" onclick="go('mess')"><i>✅</i>Messes</button><button data-t="serv" onclick="go('serv')"><i>👥</i>Servants</button><button data-t="prog" onclick="go('prog')"><i>📅</i>Programme</button><button data-t="more" onclick="$('#mo').showModal()"><i>⋯</i>Plus</button></nav>
+<dialog id="mo"><h2 style="margin-top:0">Plus</h2><button class="btn g" style="width:100%;margin-bottom:8px;text-align:left" onclick="$('#mo').close();go('cal')">✝ Calendrier liturgique</button><button class="btn g" style="width:100%;margin-bottom:8px;text-align:left" onclick="$('#mo').close();go('reu')">🗓️ Réunions et assemblées</button><button class="btn g" style="width:100%;margin-bottom:8px;text-align:left" onclick="$('#mo').close();go('bilan')">📊 Bilan des messes</button><button class="btn g" style="width:100%;margin-bottom:8px;text-align:left" onclick="$('#mo').close();go('droits')">💰 Droits statutaires</button><button class="btn g" style="width:100%;margin-bottom:8px;text-align:left" onclick="$('#mo').close();go('cot')">🤝 Cotisations diverses</button><button class="btn" style="width:100%" onclick="$('#mo').close()">Fermer</button></dialog>
+<footer id="ft"></footer>
+<div class="toast" id="toast"></div><dialog id="dlg"></dialog>
+<!--GSM--><script>
+const DATA=[];
+const LV=["Aspirant2","Acolyte","Céroféraire","Cérémoniaire","Thuriféraire2"];
+const PF={Aspirant2:"AS",Acolyte:"AC","Céroféraire":"CF","Cérémoniaire":"CR","Thuriféraire2":"TR"};
+const KEY="gsm-sfa-v1";
+let S=load(),tab="dash",Q="",LF="",cur="";
+function load(){try{const r=null;if(r){const o=JSON.parse(r);o.mess=o.mess||{};o.extra=o.extra||{};o.reu=o.reu||[];o.prog=o.prog||null;o.ann=o.ann||[];o.cfg=o.cfg||{};o.dy=o.dy||migDy(o);return o}}catch(e){}
+return{servants:DATA.map(([m,n,s,l])=>({m,n,s,l})),droits:{},cot:[],mess:{},extra:{},reu:[],prog:null,ann:[],cfg:{},dy:[{id:pastY(),mt:2000,v:{}}]}}
+function save(){push();toast()}
+const $=s=>document.querySelector(s),main=$("#main");
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const num=v=>Number(v)||0,fmt=n=>num(n).toLocaleString("fr-FR")+" FCFA";
+const sorted=()=>S.servants.slice().sort((a,b)=>a.n.localeCompare(b.n,"fr"));
+const match=s=>(!Q||(s.n+" "+s.m).toLowerCase().includes(Q.toLowerCase()))&&(!LF||s.l===LF);
+function go(t){if(!AUTH){pubHome();return}tab=t;Q="";LF="";DF="";nav(t);hl(t);({dash:vDash,serv:vServ,reu:vReu,cal:vCal,prog:vProg,mess:vMess,bilan:vBilan,droits:vDroits,cot:vCot})[t]()}
+function vDash(){
+const n=S.servants.length,f=S.servants.filter(s=>s.s==="F").length,mx=Math.max(1,...LV.map(l=>S.servants.filter(s=>s.l===l).length));
+const dd=dst(YR());
+main.innerHTML=`<div class="card">${litBanner(today())}</div><button class="btn" style="width:100%;min-height:58px;font-size:17px;margin:10px 0" onclick="MD=today();go('mess')">✝ Saisir les présences à la messe</button><h2>Rapport de l’effectif</h2><div class="grid"><div class="card"><b>${n}</b><span>Servants enregistrés</span></div><div class="card"><b>${n-f}</b><span>Garçons (M)</span></div><div class="card"><b>${f}</b><span>Filles (F)</span></div><div class="card"><b>${Object.values(S.mess).filter(a=>a.length).length}</b><span>Messes enregistrées</span></div><div class="card"><b>${S.reu.filter(r=>r.t==="R").length}</b><span>Réunions tenues</span></div><div class="card"><b>${S.reu.filter(r=>r.t==="A").length}</b><span>Assemblées générales</span></div></div>
+<h2>Répartition par niveau</h2><div class="card">${LV.map(l=>{const c=S.servants.filter(s=>s.l===l).length;return`<div class="row"><i>${l}</i><div style="width:${c/mx*60}%"></div><em>${c}</em></div>`}).join("")}</div>
+<h2>Droits statutaires ${YR().id}</h2><div class="grid"><div class="card"><b>${dd.p}/${n}</b><span>Servants à jour</span></div><div class="card"><b>${fmt(dd.t)}</b><span>Perçu</span></div><div class="card"><b>${fmt(dd.q)}</b><span>Reste à percevoir</span></div></div>
+<div class="tools" style="margin-top:14px"><button class="btn g" onclick="window.print()">Imprimer le rapport</button></div><h2>Sauvegarde des données</h2><div class="tools"><button class="btn" onclick="exportD()">⬇ Sauvegarder / envoyer</button><label class="btn g" style="display:inline-flex;align-items:center;justify-content:center;cursor:pointer">⬆ Restaurer<input type="file" accept=".json,application/json" hidden onchange="importD(this.files[0])"></label></div><p class="mu">Faites une sauvegarde régulièrement et gardez le fichier en lieu sûr (WhatsApp, e-mail, clé USB).</p><h2>Réception des messages WhatsApp</h2><div class="card tools"><input id="wan" type="tel" inputmode="tel" placeholder="242066005625" value="${esc((S.cfg&&S.cfg.wa)||"242066005625")}"><button class="btn" onclick="setWa()">Enregistrer</button></div><p class="mu">Numéro qui reçoit les messages des formulaires : indicatif du pays + numéro, sans « + » ni espaces.</p>${AUTH&&AUTH.admin?'<h2>Comptes du bureau</h2><div class="card tools"><a class="btn" href="/admin/auth/user/">Gérer les comptes</a><a class="btn g" href="/admin/core/auditlog/">Journal des paiements</a></div>':''}`}
+function toolbar(extra){return`<div class="tools"><input type="search" placeholder="Rechercher un nom ou un matricule…" value="${esc(Q)}" oninput="Q=this.value;draw()"><select onchange="LF=this.value;draw()"><option value="">Tous les niveaux</option>${LV.map(l=>`<option ${LF===l?"selected":""}>${l}</option>`).join("")}</select>${extra||""}</div>`}
+function draw(){({serv:dServ,reu:dReu,seance:dSeance,mess:dMess,bilan:dBilan,droits:dDroits,cot:dCot})[tab]()}
+function vServ(){main.innerHTML=`<h2>Liste des servants</h2>${toolbar('<button class="btn" onclick="edit()">+ Ajouter</button>')}<div class="wrap"><table class="st ss"><thead><tr><th>Matricule</th><th>Noms &amp; prénoms</th><th>Sexe</th><th>Niveau</th><th>Messes servies</th></tr></thead><tbody id="tb"></tbody><tfoot><tr><td colspan="5" id="cnt"></td></tr></tfoot></table></div><button class="fab" aria-label="Ajouter un servant" onclick="edit()">+</button><p class="mu">Touchez un servant pour voir ses messes, ses réunions et ses paiements.</p>`;dServ()}
+function dServ(){const r=sorted().filter(match);$("#tb").innerHTML=r.map(s=>`<tr class="clk" onclick="openF('${s.m}')"><td>${esc(s.m)}</td><td>${esc(s.n)}<span class="mb mu"> · ${esc(s.m)}</span></td><td>${s.s}</td><td><span class="tag">${s.l}</span></td><td>${nb(s.m)}</td></tr>`).join("")||`<tr><td colspan="5" class="mu">Aucun résultat.</td></tr>`;$("#cnt").textContent=r.length+" servant(s) affiché(s)"}
+function nextM(l){const p=PF[l];let m=0;S.servants.forEach(s=>{if(s.m.startsWith(p)){const k=parseInt(s.m.slice(2));if(k>m)m=k}});m++;return p+((p==="AS"||p==="AC")&&m<10?"0":"")+m}
+function edit(m){const s=m?S.servants.find(x=>x.m===m):{m:"",n:"",s:"M",l:"Aspirant2"},d=$("#dlg");
+d.innerHTML=`<h2 style="margin-top:0">${m?"Modifier":"Nouveau"} servant</h2><label>Noms &amp; prénoms</label><input id="fn" value="${esc(s.n)}"><label>Sexe</label><select id="fs"><option ${s.s==="M"?"selected":""}>M</option><option ${s.s==="F"?"selected":""}>F</option></select><label>Niveau</label><select id="fl">${LV.map(l=>`<option ${s.l===l?"selected":""}>${l}</option>`).join("")}</select>${m?`<label>Matricule (unique)</label><input value="${esc(m)}" disabled>`:""}
+<div class="acts">${m?`<button class="btn r" id="del" onclick="del('${m}')">Supprimer</button>`:""}<button class="btn g" onclick="$('#dlg').close()">Annuler</button><button class="btn" onclick="saveS('${m||""}')">Enregistrer</button></div>`;d.showModal()}
+function saveS(m){const n=$("#fn").value.trim();if(!n){$("#fn").focus();return}const v={n,s:$("#fs").value,l:$("#fl").value};
+if(m)Object.assign(S.servants.find(x=>x.m===m),v);else S.servants.push({m:nextM(v.l),...v});save();$("#dlg").close();refS();}
+function del(m){const b=$("#del");if(!b.dataset.c){b.dataset.c=1;b.textContent="Confirmer la suppression";return}
+S.servants=S.servants.filter(x=>x.m!==m);delete S.droits[m];S.cot.forEach(c=>delete c.v[m]);S.reu.forEach(r=>r.p=r.p.filter(x=>x!==m));S.dy.forEach(y=>delete y.v[m]);Object.keys(S.mess).forEach(k=>S.mess[k]=S.mess[k].filter(x=>x!==m));save();$("#dlg").close();refS()}
+function pastY(){const d=new Date(),y=d.getFullYear();return d.getMonth()+1>=9?y+"-"+(y+1):(y-1)+"-"+y}
+function migDy(o){const mt=Number(o.dmt)||2000,v={};Object.keys(o.droits||{}).forEach(m=>{const d=o.droits[m]||{},x=d.p?mt:Number(d.av)||0;if(x>0)v[m]=x});return[{id:pastY(),mt,v}]}
+const nextY=id=>{const a=parseInt(id)+1;return a+"-"+(a+1)};
+let DF="",DY="";
+const YR=()=>S.dy.find(y=>y.id===DY)||S.dy.find(y=>y.id===pastY())||S.dy[S.dy.length-1];
+const dst=y=>{let p=0,t=0,q=0;S.servants.forEach(s=>{const v=y.v[s.m]||0;t+=num(v);q+=mq(y,v);if(cs(y,v)[0]==="Payé")p++});return{n:S.servants.length,p,t,q}};
+function vDroits(){const y=YR(),last=S.dy.map(x=>x.id).sort().pop();
+main.innerHTML=`<h2>Droits statutaires</h2><div class="card tools"><select onchange="DY=this.value;vDroits()">${S.dy.slice().sort((a,b)=>b.id.localeCompare(a.id)).map(x=>`<option value="${x.id}" ${x.id===y.id?"selected":""}>Année ${x.id}</option>`).join("")}</select><span class="mu" style="align-self:center">Montant dû par servant :</span><input type="number" min="0" value="${y.mt||""}" placeholder="0" onchange="setDy(this.value)" style="width:130px"></div><div class="grid" id="sm"></div>${toolbar('<select onchange="DF=this.value;draw()"><option value="">Tous les statuts</option>'+["Payé","Partiel","Non payé"].map(s=>'<option '+(DF===s?"selected":"")+'>'+s+'</option>').join("")+'</select><button class="btn g" onclick="window.print()">Imprimer</button><button class="btn g" onclick="copyT()">Copier (tableur)</button>')}<div class="wrap"><table class="st sc"><thead><tr><th>Matricule</th><th>Noms &amp; prénoms</th><th>Sexe</th><th>Statut</th><th>Versé</th><th>Manquant</th></tr></thead><tbody id="tb"></tbody></table></div><p class="mu">Manquant = montant dû − montant versé. Les droits statutaires sont suivis année par année.</p><details class="card" style="margin-top:12px"><summary style="cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:600">Nouvelle année</summary><div class="tools" style="margin-top:8px"><input id="ny" value="${nextY(last)}" placeholder="2027-2028"><input id="nm2" type="number" min="0" value="${y.mt||2000}" placeholder="Montant"><button class="btn" onclick="addY()">Créer l’année</button></div>${S.dy.length>1?`<button class="btn r" id="dyd" style="margin-top:8px" onclick="delY()">Supprimer l’année ${y.id}</button>`:""}</details>`;dDroits()}
+function dDroits(){const y=YR();$("#tb").innerHTML=sorted().filter(s=>match(s)&&(!DF||cs(y,y.v[s.m]||0)[0]===DF)).map(s=>{const v=y.v[s.m]||0,r=cs(y,v);return`<tr><td>${esc(s.m)}</td><td>${esc(s.n)}<span class="mb mu"> · ${esc(s.m)}</span></td><td>${s.s}</td><td id="dt_${s.m}" class="${r[1]}">${r[0]}</td><td><input type="number" placeholder="Versé" min="0" value="${v||""}" oninput="sDy('${s.m}',this.value)"></td><td id="dq_${s.m}">${fmt(mq(y,v))}</td></tr>`}).join("")||`<tr><td colspan="6" class="mu">Aucun résultat.</td></tr>`;sumD()}
+function sDy(m,v){const y=YR();y.v[m]=num(v);save();const r=cs(y,y.v[m]),e=$("#dt_"+m),q=$("#dq_"+m);if(e){e.textContent=r[0];e.className=r[1]}if(q)q.textContent=fmt(mq(y,y.v[m]));sumD()}
+function sumD(){const e=$("#sm");if(!e)return;const d=dst(YR());e.innerHTML=`<div class="card"><b>${d.p}/${d.n}</b><span>Servants à jour</span></div><div class="card"><b>${fmt(d.t)}</b><span>Versé</span></div><div class="card"><b>${fmt(d.q)}</b><span>Manquant</span></div>`}
+function setDy(v){YR().mt=num(v);save();dDroits();sumD()}
+function addY(){const id=$("#ny").value.trim();if(!/^\d{4}-\d{4}$/.test(id)){$("#ny").focus();return}if(!S.dy.some(x=>x.id===id))S.dy.push({id,mt:num($("#nm2").value),v:{}});DY=id;save();vDroits()}
+function delY(){const b=$("#dyd");if(!b.dataset.c){b.dataset.c=1;b.textContent="Confirmer la suppression";return}const id=YR().id;S.dy=S.dy.filter(x=>x.id!==id);DY="";save();vDroits()}
+const mq=(c,v)=>Math.max(0,num(c.mt)-num(v)),cs=(c,v)=>{v=num(v);const t=num(c.mt);return t>0?(v>=t?["Payé","ok"]:v>0?["Partiel","mu"]:["Non payé","no"]):(v>0?["Payé","ok"]:["Non payé","no"])};
+const C=()=>S.cot.find(c=>c.id===cur);
+function vCot(){if(!S.cot.some(c=>c.id===cur))cur=S.cot[0]?S.cot[0].id:"";
+main.innerHTML=`<h2>Cotisations diverses</h2><div class="card tools"><input id="nm" placeholder="Motif (ex. Tisanes de Pâques)" style="flex:2;min-width:180px"><input id="nt" type="number" min="0" placeholder="Montant dû par servant" style="flex:1;min-width:150px"><button class="btn" onclick="newC()">Créer</button></div>${S.cot.length?`<div class="tools"><select onchange="cur=this.value;vCot()">${S.cot.map(c=>`<option value="${c.id}" ${c.id===cur?"selected":""}>${esc(c.motif)}</option>`).join("")}</select><span class="mu" style="align-self:center">Montant dû par servant :</span><input type="number" min="0" value="${C().mt||""}" placeholder="0" onchange="setMt(this.value)" style="width:130px"><details style="flex:1 1 100%"><summary class="btn g" style="display:flex;align-items:center;justify-content:center;cursor:pointer">Plus d’actions</summary><div class="tools" style="margin-top:8px"><button class="btn g" onclick="window.print()">Imprimer</button><button class="btn g" onclick="copyT()">Copier (tableur)</button><button class="btn r" id="dc" onclick="delC()">Supprimer la cotisation</button></div></details></div>${toolbar()}<div class="wrap"><table class="st sc"><thead><tr><th>Matricule</th><th>Noms &amp; prénoms</th><th>Sexe</th><th>Statut</th><th>Versé</th><th>Manquant</th></tr></thead><tbody id="tb"></tbody><tfoot><tr><td colspan="4" id="t0"></td><td id="t1"></td><td id="t2"></td></tr></tfoot></table></div><p class="mu">Manquant = montant dû − montant versé.</p>`:`<p class="mu">Aucune cotisation pour le moment. Créez-en une avec son motif et le montant dû par servant.</p>`}`;if(S.cot.length)dCot()}
+function dCot(){const c=C();$("#tb").innerHTML=sorted().filter(match).map(s=>{const v=c.v[s.m]||0,r=cs(c,v);return`<tr><td>${esc(s.m)}</td><td>${esc(s.n)}<span class="mb mu"> · ${esc(s.m)}</span></td><td>${s.s}</td><td id="st_${s.m}" class="${r[1]}">${r[0]}</td><td><input type="number" placeholder="Versé" min="0" value="${v||""}" oninput="sC('${s.m}',this.value)"></td><td id="mq_${s.m}">${fmt(mq(c,v))}</td></tr>`}).join("");tC()}
+function tC(){const c=C();let a=0,t=0,q=0;S.servants.forEach(s=>{const v=c.v[s.m]||0;a+=num(c.mt);t+=num(v);q+=mq(c,v)});$("#t0").textContent="TOTAL – attendu : "+fmt(a);$("#t1").textContent=fmt(t);$("#t2").textContent=fmt(q)}
+function sC(m,v){const c=C();c.v[m]=num(v);save();const e=$("#st_"+m),r=cs(c,c.v[m]),q=$("#mq_"+m);if(e){e.textContent=r[0];e.className=r[1]}if(q)q.textContent=fmt(mq(c,c.v[m]));tC()}
+function newC(){const m=$("#nm").value.trim();if(!m)return;cur="c"+Date.now();S.cot.push({id:cur,motif:m,mt:num($("#nt").value),v:{}});save();vCot()}
+function setMt(v){C().mt=num(v);save();dCot()}
+function delC(){const b=$("#dc");if(!b.dataset.c){b.dataset.c=1;b.textContent="Confirmer ?";return}S.cot=S.cot.filter(c=>c.id!==cur);save();vCot()}
+function copyT(){const t=[...document.querySelectorAll("table tr")].map(r=>[...r.children].map(c=>(c.querySelector("input")?c.querySelector("input").value:c.textContent).trim()).join("\t")).join("\n");
+try{navigator.clipboard.writeText(t).then(()=>alert("Copié : collez dans Excel ou Google Sheets."),fb)}catch(e){fb()}
+function fb(){const a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy");alert("Copié.")}catch(e){}a.remove()}}
+const SL={"0630":"6h30","1700":"17h00","0800":"8h00","1000":"10h00"},JR=["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
+const today=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
+let MD=today(),MS="",BP="";const addDay=(d,n)=>new Date(new Date(d+"T12:00:00Z").getTime()+n*864e5).toISOString().slice(0,10);
+function tg(e,r){if(e.target.tagName!=="INPUT")r.querySelector("input").click()}
+const nb=m=>Object.values(S.mess).filter(a=>a.includes(m)).length;
+const slots=d=>{const w=new Date(d+"T12:00:00").getDay(),q=lit(d).e;if(q===-2||q===-1)return[];return w===0?["0800","1000"]:w===6?["0630","1700"]:["0630"]};
+const mk=()=>MD+"|"+MS;
+function vMess(){const sl=slots(MD),ex=S.extra[MD]||[],all=[...sl,...ex.map(e=>e.id)];if(!all.includes(MS))MS=all[0]||"";if(!MS){main.innerHTML=`<h2>Messes servies</h2><div class="card">${litBanner(MD)}</div><div class="card tools"><input type="date" value="${MD}" onchange="MD=this.value||today();vMess()"></div><p class="mu">Pas de messe ordinaire ce jour.</p>${xForm()}`;return}
+main.innerHTML=`<h2>Messes servies</h2><div class="card">${litBanner(MD)}</div><div class="card tools"><button class="btn g" onclick="MD=addDay(MD,-1);vMess()">◀</button><input type="date" value="${MD}" onchange="MD=this.value||today();vMess()"><button class="btn g" onclick="MD=addDay(MD,1);vMess()">▶</button><b style="align-self:center">${JR[new Date(MD+"T12:00:00").getDay()]}</b>${sl.map(s=>`<button class="btn ${s===MS?"":"g"}" onclick="MS='${s}';vMess()">Messe de ${SL[s]}</button>`).join("")}${ex.map(e=>`<button class="btn ${e.id===MS?"":"g"}" onclick="MS='${e.id}';vMess()">★ ${esc(e.lb)}${e.tm?" · "+e.tm.replace(":","h"):""}</button>`).join("")}${MS[0]==="x"?`<button class="btn r" id="dx" onclick="delExtra('${MS}')">Supprimer</button>`:""}</div>${toolbar('<button class="btn g" onclick="allM(1)">Tout cocher</button><button class="btn g" onclick="allM(0)">Tout décocher</button>')}<div class="wrap"><table><thead><tr><th>Présent</th><th>Matricule</th><th>Noms &amp; prénoms</th><th>Niveau</th></tr></thead><tbody id="tb"></tbody><tfoot><tr><td colspan="4" id="cnt"></td></tr></tfoot></table></div>${xForm()}<div class="chip" id="chip"></div><p class="mu">Cochez les servants qui ont servi cette messe. Horaires : lundi à vendredi 6h30 ; samedi 6h30 et 17h00 ; dimanche 8h00 et 10h00.</p>`;dMess()}
+function dMess(){const a=S.mess[mk()]||[];$("#tb").innerHTML=sorted().filter(match).map(s=>`<tr onclick="tg(event,this)"><td><input type="checkbox" ${a.includes(s.m)?"checked":""} onchange="tM('${s.m}',this.checked)" style="width:20px;height:20px;min-width:0"></td><td>${esc(s.m)}</td><td>${esc(s.n)}</td><td><span class="tag">${s.l}</span></td></tr>`).join("");cM()}
+function cM(){const n=(S.mess[mk()]||[]).length;$("#cnt").textContent=n+" servant(s) présent(s) à cette messe";const c=$("#chip");if(c)c.textContent="✓ "+n+" présent(s)"}
+function tM(m,c){const k=mk();let a=(S.mess[k]||[]).filter(x=>x!==m);if(c)a.push(m);S.mess[k]=a;save();cM()}
+function allM(c){const k=mk(),a=new Set(S.mess[k]||[]);sorted().filter(match).forEach(s=>c?a.add(s.m):a.delete(s.m));S.mess[k]=[...a];save();dMess()}
+function vBilan(){main.innerHTML=`<h2>Bilan des messes servies</h2>${toolbar('<input type="month" value="'+BP+'" onchange="BP=this.value;draw()"><button class="btn g" onclick="window.print()">Imprimer</button><button class="btn g" onclick="copyT()">Copier (tableur)</button>')}<div class="wrap"><table class="sb"><thead><tr><th>Rang</th><th>Matricule</th><th>Noms &amp; prénoms</th><th>Niveau</th>${Object.values(SL).map(x=>`<th>${x}</th>`).join("")}<th>Extra</th><th>Total</th></tr></thead><tbody id="tb"></tbody><tfoot><tr><td colspan="4" id="cnt"></td><td colspan="6" id="t1"></td></tr></tfoot></table></div><p class="mu">Laissez le mois vide pour voir toute la période. Le classement se fait par nombre de messes servies.</p>`;dBilan()}
+function dBilan(){const c={};Object.keys(S.mess).forEach(k=>{const[d,s0]=k.split("|"),s=s0[0]==="x"?"x":s0;if(BP&&!d.startsWith(BP))return;S.mess[k].forEach(m=>{const o=c[m]=c[m]||{t:0};o[s]=(o[s]||0)+1;o.t++})});
+const r=S.servants.filter(match).map(s=>({s,c:c[s.m]||{t:0}})).sort((a,b)=>b.c.t-a.c.t||a.s.n.localeCompare(b.s.n,"fr"));
+$("#tb").innerHTML=r.map((x,i)=>`<tr class="clk" onclick="openF('${x.s.m}')"><td>${i+1}</td><td>${esc(x.s.m)}</td><td>${esc(x.s.n)}</td><td><span class="tag">${x.s.l}</span></td>${Object.keys(SL).map(k=>`<td>${x.c[k]||0}</td>`).join("")}<td>${x.c.x||0}</td><td><b>${x.c.t}</b></td></tr>`).join("");
+$("#cnt").textContent=Object.keys(S.mess).filter(k=>S.mess[k].length&&(!BP||k.startsWith(BP))).length+" messe(s) enregistrée(s)";$("#t1").textContent=r.reduce((a,x)=>a+x.c.t,0)+" service(s) au total"}
+const CL={blanc:"#f7f1de",vert:"#2f7a4b",violet:"#7b4a9c",rouge:"#b3432f",rose:"#e08aa8"};
+const FX={"01-01":["Sainte Marie, Mère de Dieu",3,"blanc"],"02-02":["Présentation du Seigneur",3,"blanc"],"03-19":["Saint Joseph, époux de la Vierge Marie",3,"blanc"],"03-25":["Annonciation du Seigneur",3,"blanc"],"05-31":["Visitation de la Vierge Marie",2,"blanc"],"06-24":["Nativité de saint Jean-Baptiste",3,"blanc"],"06-29":["Saints Pierre et Paul",3,"rouge"],"08-06":["Transfiguration du Seigneur",2,"blanc"],"08-15":["Assomption de la Vierge Marie",3,"blanc"],"09-08":["Nativité de la Vierge Marie",2,"blanc"],"09-14":["Croix glorieuse",2,"rouge"],"09-29":["Saints archanges Michel, Gabriel et Raphaël",2,"blanc"],"10-04":["Saint François d’Assise, patron de la paroisse",3,"blanc"],"11-01":["Tous les Saints",3,"blanc"],"11-02":["Commémoration de tous les fidèles défunts",3,"violet"],"12-08":["Immaculée Conception",3,"blanc"],"12-25":["Nativité du Seigneur (Noël)",3,"blanc"],"12-26":["Saint Étienne, premier martyr",2,"rouge"]};
+const MV={"-46":["Mercredi des Cendres",2,"violet"],"-7":["Dimanche des Rameaux et de la Passion",3,"rouge"],"-6":["Lundi saint",2,"violet"],"-5":["Mardi saint",2,"violet"],"-4":["Mercredi saint",2,"violet"],"-3":["Jeudi saint – Messe de la Cène",3,"blanc"],"-2":["Vendredi saint – Passion du Seigneur (pas de messe)",3,"rouge"],"-1":["Samedi saint – Veillée pascale dans la nuit",3,"blanc"],"0":["Dimanche de Pâques – Résurrection du Seigneur",3,"blanc"],"7":["2ᵉ dimanche de Pâques – Divine Miséricorde",1,"blanc"],"39":["Ascension du Seigneur",3,"blanc"],"49":["Dimanche de la Pentecôte",3,"rouge"],"56":["Sainte Trinité",3,"blanc"],"63":["Saint Sacrement du Corps et du Sang du Christ",3,"blanc"],"68":["Sacré-Cœur de Jésus",3,"blanc"],"69":["Cœur immaculé de Marie",2,"blanc"]};
+const D0=(y,m,d)=>new Date(Date.UTC(y,m-1,d)),aD=(t,n)=>new Date(t.getTime()+n*864e5),sb=t=>aD(t,-t.getUTCDay()),ds=(a,b)=>Math.round((a-b)/864e5);
+function easter(y){const a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451);return D0(y,Math.floor((h+l-7*m+114)/31),(h+l-7*m+114)%31+1)}
+const adv=y=>aD(sb(D0(y,12,24)),-21),ord=n=>n+(n===1?"er":"e");
+function lit(s){const[Y,M,Dd]=s.split("-").map(Number),t=D0(Y,M,Dd),w=t.getUTCDay(),E=easter(Y),e=ds(t,E),A=adv(Y),y="ABC"[(t>=A?Y:Y-1)%3],ep=sb(D0(Y,1,8)),bp=ep.getUTCDate()>=7?aD(ep,1):aD(ep,7),o1=aD(bp,7-bp.getUTCDay()),k=aD(A,-7),an=ds(D0(Y,3,25),E);
+const se=(M===12&&Dd>=25)||(M===1&&t<=bp)?"Temps de Noël":t>=A?"Temps de l’Avent":e>=-46&&e<0?"Carême":e>=0&&e<=49?"Temps pascal":"Temps ordinaire";
+const bc={"Temps de Noël":"blanc","Temps de l’Avent":"violet","Carême":"violet","Temps pascal":"blanc","Temps ordinaire":"vert"}[se],R=(n,r,c)=>({n,r,c,s:se,y,e}),m=MV[e];
+if(m)return R(m[0],m[1],m[2]);if(e>=1&&e<=6)return R("Octave de Pâques",3,"blanc");if(e===8&&an>=-7&&an<=7)return R("Annonciation du Seigneur (reportée)",3,"blanc");
+if(w===0){if(se==="Temps de l’Avent"){const n=1+ds(t,A)/7;return R(ord(n)+" dimanche de l’Avent",1,n===3?"rose":"violet")}
+if(se==="Carême"){const n=1+(e+42)/7;return R(ord(n)+" dimanche de Carême",1,n===4?"rose":"violet")}
+if(se==="Temps pascal")return R(ord(1+e/7)+" dimanche de Pâques",1,"blanc");
+if(se==="Temps de Noël"&&M===12&&Dd>=26)return R("Sainte Famille",2,"blanc");if(+t===+ep)return R("Épiphanie du Seigneur",3,"blanc");if(+t===+bp)return R("Baptême du Seigneur",2,"blanc")}
+const fx=FX[("0"+M).slice(-2)+"-"+("0"+Dd).slice(-2)];if(fx&&!(M===3&&Dd===25&&an>=-7&&an<=7)&&(w!==0||fx[1]===3))return R(fx[0],fx[1],fx[2]);
+if(se==="Temps ordinaire"){if(+t===+k)return R("Christ, Roi de l’univers",3,"blanc");const ps=aD(t,-w),wk=ps<o1?1:e>49?34-ds(k,ps)/7:2+ds(ps,o1)/7;return w===0?R(ord(wk)+" dimanche du Temps ordinaire",1,"vert"):R("Temps ordinaire – semaine "+wk,0,"vert")}
+return R(se,0,bc)}
+const litBanner=d=>{const L=lit(d);return`<span class="dot" style="background:${CL[L.c]}"></span><b>${esc(L.n)}</b><br><span class="mu">${L.s} · Année ${L.y} · couleur ${L.c}${L.r>=3?" · Solennité : pensez à une vigile ou à une messe extraordinaire":""}</span>`};
+const XT=["Messe solennelle","Veillée / vigile","Mariage","Funérailles","Messe d’action de grâce","Messe pour les défunts","Messe de rentrée / clôture","Autre"];
+function xForm(){return`<details class="card" style="margin-top:12px"><summary style="cursor:pointer;font-weight:700;min-height:44px;display:flex;align-items:center">★ Ajouter une messe extraordinaire</summary><div class="tools" style="margin-top:8px"><select id="xt">${XT.map(x=>`<option>${x}</option>`).join("")}</select><input id="xh" type="time" style="width:120px"><input id="xd" placeholder="Précision (facultatif)" style="flex:1;min-width:140px"><button class="btn" onclick="addExtra()">Ajouter</button></div></details>`}
+function addExtra(){const t=$("#xt").value,d=$("#xd").value.trim(),id="x"+Date.now();(S.extra[MD]=S.extra[MD]||[]).push({id,lb:d?t+" – "+d:t,tm:$("#xh").value});MS=id;save();vMess()}
+function delExtra(id){const b=$("#dx");if(!b.dataset.c){b.dataset.c=1;b.textContent="Confirmer ?";return}S.extra[MD]=S.extra[MD].filter(e=>e.id!==id);delete S.mess[MD+"|"+id];save();MS="";vMess()}
+let CV="1";const MO=["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
+function vCal(){let h="",mo="";for(let t=D0(2026,9,1);t<=D0(2027,8,31);t=aD(t,1)){const d=t.toISOString().slice(0,10),L=lit(d);if(L.r<(CV==="1"?1:2))continue;const k=MO[t.getUTCMonth()]+" "+t.getUTCFullYear();if(k!==mo){mo=k;h+=`<tr class="mh"><td colspan="4" style="background:var(--bg);font-weight:700">${k}</td></tr>`}
+const n=Object.keys(S.mess).filter(q=>q.startsWith(d+"|")&&S.mess[q].length).length,x=(S.extra[d]||[]).length;
+h+=`<tr><td>${JR[t.getUTCDay()].slice(0,3)}. ${t.getUTCDate()}</td><td><span class="dot" style="background:${CL[L.c]}"></span>${esc(L.n)}${L.r>=3?" ★":""}</td><td class="mu">${n} saisie(s)${x?" · "+x+" extra":""}</td><td><button class="btn g" onclick="MD='${d}';go('mess')">Messes</button></td></tr>`}
+main.innerHTML=`<h2>Calendrier liturgique 2026-2027</h2><div class="tools"><select onchange="CV=this.value;vCal()"><option value="1" ${CV==="1"?"selected":""}>Dimanches, fêtes et solennités</option><option value="2" ${CV==="2"?"selected":""}>Fêtes et solennités seulement</option></select><button class="btn g" onclick="window.print()">Imprimer</button></div><div class="wrap"><table class="cl"><thead><tr><th>Date</th><th>Célébration</th><th>Messes</th><th></th></tr></thead><tbody>${h}</tbody></table></div><p class="mu">★ solennité. Dates calculées à partir de Pâques (28 mars 2027). L’Ascension et le Saint-Sacrement peuvent être déplacés au dimanche par la conférence épiscopale.</p>`}
+function exportD(){const n="sauvegarde-servants-"+today()+".json",b=new Blob([JSON.stringify(S)],{type:"application/json"});
+try{const f=new File([b],n,{type:"application/json"});if(navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f],title:n}).catch(()=>{});return}}catch(e){}
+const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=n;document.body.appendChild(a);a.click();a.remove()}
+function importD(f){if(!f)return;const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result);if(!Array.isArray(o.servants))throw 0;if(!confirm("Remplacer les données partagées de TOUS les utilisateurs par cette sauvegarde ?"))return;o.droits=o.droits||{};o.cot=o.cot||[];o.mess=o.mess||{};o.extra=o.extra||{};o.reu=o.reu||[];o.prog=S.prog;o.ann=S.ann;o.cfg=S.cfg;o.dy=o.dy||migDy(o);S=o;save();alert("Données restaurées.");go("dash")}catch(e){alert("Fichier de sauvegarde invalide.")}};r.readAsText(f)}
+const RT={R:"Réunion",A:"Assemblée générale"};let FM="",FP="",RC="";
+const fd=d=>{const t=new Date(d+"T12:00:00");return JR[t.getDay()].slice(0,3)+". "+t.getDate()+" "+MO[t.getMonth()].toLowerCase()+" "+t.getFullYear()};
+const hl=t=>document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.t===t||(b.dataset.t==="more"&&["bilan","droits","cot","reu","cal"].includes(t))));
+const openF=m=>{FP="";fiche(m)};
+function refS(){if(tab==="fiche"){S.servants.some(x=>x.m===FM)?fiche(FM):go("serv")}else dServ()}
+function fiche(m){const s=S.servants.find(x=>x.m===m);if(!s)return go("serv");FM=m;tab="fiche";nav("fiche");hl("serv");
+const L=[],c={};Object.keys(S.mess).forEach(k=>{if(!S.mess[k].includes(m))return;const[d,q]=k.split("|");if(FP&&!d.startsWith(FP))return;const ex=q[0]==="x"?(S.extra[d]||[]).find(e=>e.id===q)||{}:null;L.push({d,q,t:ex?"★ "+(ex.lb||"Messe extraordinaire")+(ex.tm?" à "+ex.tm.replace(":","h"):""):"Messe de "+SL[q]});const z=ex?"x":q;c[z]=(c[z]||0)+1});
+L.sort((a,b)=>b.d.localeCompare(a.d)||a.q.localeCompare(b.q));
+const R=S.reu.filter(r=>r.t==="R"),A=S.reu.filter(r=>r.t==="A"),pr=a=>a.filter(r=>r.p.includes(m)).length,dr=S.droits[m];
+main.innerHTML=`<div class="tools"><button class="btn g" onclick="go('serv')">← Liste</button><button class="btn g" onclick="edit('${m}')">Modifier</button></div><h2 style="margin-top:4px">${esc(s.n)}</h2><p class="mu">${esc(s.m)} – ${s.l} – ${s.s==="F"?"Fille":"Garçon"}</p>
+<div class="grid"><div class="card"><b>${L.length}</b><span>Messes servies${FP?" (période)":""}</span></div><div class="card"><b>${pr(R)}/${R.length}</b><span>Réunions</span></div><div class="card"><b>${pr(A)}/${A.length}</b><span>Assemblées générales</span></div></div>
+<div class="card" style="margin-top:10px">${Object.keys(SL).concat("x").map(k=>`<div class="row"><i>${k==="x"?"Extraordinaires":SL[k]}</i><em>${c[k]||0}</em></div>`).join("")}</div>
+<h2>Messes servies</h2><div class="tools"><input type="month" value="${FP}" onchange="FP=this.value;fiche('${m}')"></div><div class="wrap">${L.map(x=>{const q=lit(x.d);return`<div class="fr"><b>${fd(x.d)}</b> – ${esc(x.t)}<br><span class="dot" style="background:${CL[q.c]}"></span><span class="mu">${esc(q.n)}</span></div>`}).join("")||`<div class="fr mu">Aucune messe enregistrée pour ce servant.</div>`}</div>
+<h2>Paiements</h2><div class="wrap">${S.dy.slice().sort((a,b)=>b.id.localeCompare(a.id)).map(y=>`<div class="fr">Droits statutaires ${y.id} : ${fmt(y.v[m])} versé sur ${fmt(y.mt)} – manquant ${fmt(mq(y,y.v[m]))}</div>`).join("")}${S.cot.map(k=>`<div class="fr">${esc(k.motif)} : ${fmt(k.v[m])} versé sur ${fmt(k.mt)} – manquant ${fmt(mq(k,k.v[m]))}</div>`).join("")}</div>`}
+function vReu(){const R=S.reu.slice().sort((a,b)=>b.d.localeCompare(a.d)),nr=S.reu.filter(r=>r.t==="R").length;
+main.innerHTML=`<h2>Réunions et assemblées générales</h2><div class="grid"><div class="card"><b>${nr}</b><span>Réunions tenues</span></div><div class="card"><b>${S.reu.length-nr}</b><span>Assemblées générales</span></div></div><div class="card tools" style="margin-top:12px"><select id="rt"><option value="R">Réunion</option><option value="A">Assemblée générale</option></select><input id="rd" type="date" value="${today()}"><input id="ro" placeholder="Objet ou lieu (facultatif)" style="flex:2;min-width:160px"><button class="btn" onclick="addR()">Créer et pointer</button></div>
+<h2>Séances</h2><div class="wrap">${R.map(r=>`<div class="fr clk" onclick="seance('${r.id}')"><b>${RT[r.t]}</b> – ${fd(r.d)}${r.o?`<br><span class="mu">${esc(r.o)}</span>`:""}<br><span class="mu">${r.p.length} présent(s) sur ${S.servants.length}</span></div>`).join("")||`<div class="fr mu">Aucune séance enregistrée. Créez-en une ci-dessus.</div>`}</div>
+<h2>Présences par servant</h2>${toolbar('')}<div class="wrap"><table><thead><tr><th>Noms &amp; prénoms</th><th>Réunions</th><th>Assemblées</th><th>Taux</th></tr></thead><tbody id="tb"></tbody></table></div>`;dReu()}
+function dReu(){const R=S.reu.filter(r=>r.t==="R"),A=S.reu.filter(r=>r.t==="A");$("#tb").innerHTML=sorted().filter(match).map(s=>{const a=R.filter(r=>r.p.includes(s.m)).length,b=A.filter(r=>r.p.includes(s.m)).length,t=R.length+A.length;return`<tr class="clk" onclick="openF('${s.m}')"><td>${esc(s.n)}</td><td>${a}/${R.length}</td><td>${b}/${A.length}</td><td>${t?Math.round((a+b)/t*100)+"%":"–"}</td></tr>`}).join("")}
+function addR(){const id="r"+Date.now();S.reu.push({id,t:$("#rt").value,d:$("#rd").value||today(),o:$("#ro").value.trim(),p:[]});save();seance(id)}
+function seance(id){const r=S.reu.find(x=>x.id===id);if(!r)return go("reu");RC=id;tab="seance";Q="";LF="";nav("seance");hl("reu");
+main.innerHTML=`<h2>${RT[r.t]} – ${fd(r.d)}</h2>${r.o?`<p class="mu">${esc(r.o)}</p>`:""}<div class="tools"><button class="btn g" onclick="go('reu')">← Retour</button><button class="btn g" onclick="allR(1)">Tout cocher</button><button class="btn g" onclick="allR(0)">Tout décocher</button><button class="btn r" id="dr" onclick="delR()">Supprimer la séance</button></div>${toolbar('')}<div class="wrap"><table><thead><tr><th>Présent</th><th>Matricule</th><th>Noms &amp; prénoms</th><th>Niveau</th></tr></thead><tbody id="tb"></tbody></table></div><div class="chip" id="chip"></div>`;dSeance()}
+function dSeance(){const r=S.reu.find(x=>x.id===RC);$("#tb").innerHTML=sorted().filter(match).map(s=>`<tr onclick="tg(event,this)"><td><input type="checkbox" ${r.p.includes(s.m)?"checked":""} onchange="tR('${s.m}',this.checked)" style="width:20px;height:20px;min-width:0"></td><td>${esc(s.m)}</td><td>${esc(s.n)}</td><td><span class="tag">${s.l}</span></td></tr>`).join("");cR()}
+function cR(){const r=S.reu.find(x=>x.id===RC),c=$("#chip");if(c)c.textContent="✓ "+r.p.length+" présent(s) sur "+S.servants.length}
+function tR(m,c){const r=S.reu.find(x=>x.id===RC);r.p=r.p.filter(x=>x!==m);if(c)r.p.push(m);save();cR()}
+function allR(c){const r=S.reu.find(x=>x.id===RC),a=new Set(r.p);sorted().filter(match).forEach(s=>c?a.add(s.m):a.delete(s.m));r.p=[...a];save();dSeance()}
+function delR(){const b=$("#dr");if(!b.dataset.c){b.dataset.c=1;b.textContent="Confirmer ?";return}S.reu=S.reu.filter(x=>x.id!==RC);save();go("reu")}
+const RTS=["dash","serv","cal","prog","mess","bilan","reu","droits","cot"];let nv=0;
+function nav(t){try{if(location.hash.slice(1)!==t)history[nv?"pushState":"replaceState"](null,"","#"+t)}catch(e){}nv=1}
+addEventListener("popstate",()=>{const t=location.hash.slice(1);if(RTS.includes(t))go(t);else if(!t)go("dash")});
+addEventListener("focusin",e=>{if(/^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName)&&e.target.type!=="checkbox")document.body.classList.add("kb")});
+addEventListener("focusout",()=>document.body.classList.remove("kb"));
+
+/* ===== Synchronisation temps réel (WebSocket · Django Channels) ===== */
+const GSM=window.GSM||{user:null};let AUTH=GSM.user||null;
+const sj=o=>JSON.stringify(o,(k,v)=>v&&typeof v==="object"&&!Array.isArray(v)?Object.keys(v).sort().reduce((a,x)=>(a[x]=v[x],a),{}):v);
+let lastF={},ready=false,ws=null,retry=0,hbT=null,rcT=null,stale=0;const CID=Math.random().toString(36).slice(2,12);
+function flat(o){const f={};
+o.servants.forEach(s=>f["s_"+s.m]={t:"s",m:s.m,n:s.n,s:s.s,l:s.l});
+o.dy.forEach(y=>{f["y_"+y.id]={t:"y",id:y.id,mt:num(y.mt)};Object.keys(y.v||{}).forEach(m=>{if(num(y.v[m])>0)f["yv_"+y.id+"_"+m]={t:"yv",y:y.id,m,v:num(y.v[m])}})});
+o.cot.forEach(c=>{f["c_"+c.id]={t:"c",id:c.id,motif:c.motif,mt:num(c.mt)};Object.keys(c.v||{}).forEach(m=>{if(num(c.v[m])>0)f["cv_"+c.id+"_"+m]={t:"cv",c:c.id,m,v:num(c.v[m])}})});
+Object.keys(o.mess).forEach(k=>{if(o.mess[k].length){const[d,q]=k.split("|");f["p_"+d+"_"+q]={t:"p",d,q,p:o.mess[k].slice().sort()}}});
+Object.keys(o.extra).forEach(d=>o.extra[d].forEach(e=>f["x_"+e.id]={t:"x",id:e.id,d,lb:e.lb||"",tm:e.tm||""}));
+o.reu.forEach(r=>f["r_"+r.id]={t:"r",id:r.id,rt:r.t,d:r.d,o:r.o||"",p:r.p.slice().sort()});
+(o.prog||[]).forEach(a=>f["g_"+a.id]={t:"g",id:a.id,d:a.d,ti:a.t,h:a.h||"",c:a.c||"",l:a.l||""});
+(o.ann||[]).forEach(a=>f["n_"+a.id]={t:"n",id:a.id,ti:a.t,m:a.m,d:a.d,i:a.i?1:0,x:a.x||""});
+if(o.cfg&&o.cfg.wa)f.cfg={t:"cfg",wa:o.cfg.wa};
+return f}
+function unflat(f){const o={servants:[],droits:{},cot:[],mess:{},extra:{},reu:[],prog:[],ann:[],cfg:{},dy:[]},Y={},C={},V=Object.values(f);
+V.forEach(d=>{if(d.t==="s")o.servants.push({m:d.m,n:d.n,s:d.s,l:d.l});else if(d.t==="y")o.dy.push(Y[d.id]={id:d.id,mt:d.mt,v:{}});else if(d.t==="c")o.cot.push(C[d.id]={id:d.id,motif:d.motif,mt:d.mt,v:{}});else if(d.t==="p")o.mess[d.d+"|"+d.q]=d.p;else if(d.t==="x")(o.extra[d.d]=o.extra[d.d]||[]).push({id:d.id,lb:d.lb,tm:d.tm});else if(d.t==="r")o.reu.push({id:d.id,t:d.rt,d:d.d,o:d.o,p:d.p||[]});else if(d.t==="g")o.prog.push({id:d.id,d:d.d,t:d.ti,h:d.h,c:d.c,l:d.l});else if(d.t==="n")o.ann.push({id:d.id,t:d.ti,m:d.m,d:d.d,i:d.i,x:d.x});else if(d.t==="cfg")o.cfg={wa:d.wa}});
+V.forEach(d=>{if(d.t==="yv"&&Y[d.y])Y[d.y].v[d.m]=d.v;else if(d.t==="cv"&&C[d.c])C[d.c].v[d.m]=d.v});
+const bi=(a,b)=>a.id<b.id?-1:1;o.dy.sort(bi);o.cot.sort(bi);Object.keys(o.extra).forEach(d=>o.extra[d].sort(bi));
+if(!o.dy.length)o.dy=[{id:pastY(),mt:2000,v:{}}];return o}
+const SYM={ok:"● Synchronisé en direct",conn:"Connexion en cours…",off:"⚠ Hors ligne : reconnexion… (modifications bloquées)",denied:"⚠ Accès refusé : reconnectez-vous"};
+function setSy(k){const e=$("#sy");if(!e)return;e.textContent=AUTH?(SYM[k]||""):"";e.style.color=k==="ok"?"":"var(--no)"}
+function send(o){if(ws&&ws.readyState===1){o.cid=CID;ws.send(JSON.stringify(o));return true}return false}
+function mkOp(id,d,old){const ty=(d||old||{}).t;
+if(ty==="p"||ty==="r"){
+if(d&&(!old||old.t===ty)){const o=old?old.p:[],a=d.p.filter(x=>!o.includes(x)),r=o.filter(x=>!d.p.includes(x));
+if(old&&!a.length&&!r.length)return{type:"set",id,data:d};
+const b={...d};delete b.p;return{type:"mem",id,base:b,add:a,rem:r}}
+if(!d&&old&&ty==="p"){const b={...old};delete b.p;return{type:"mem",id,base:b,add:[],rem:old.p}}}
+return d?{type:"set",id,data:d}:{type:"del",id}}
+function push(){if(!ready||!AUTH)return;const f=flat(S);
+for(const id in f)if(sj(f[id])!==sj(lastF[id]))send(mkOp(id,f[id],lastF[id]));
+for(const id in lastF)if(!(id in f))send(mkOp(id,null,lastF[id]));
+lastF=f}
+const NL={s:"un servant",yv:"un paiement",cv:"une cotisation",y:"les droits statutaires",c:"les cotisations",p:"une présence",x:"une messe",r:"une réunion",g:"le programme",n:"une annonce",cfg:"les réglages"};
+let NT=0;function notify(by,id){if(!AUTH)return;const k=id==="cfg"?"cfg":id.split("_")[0];clearTimeout(NT);NT=setTimeout(()=>toast("🔔 "+by+" a modifié "+(NL[k]||"des données"),2600),250)}
+function applyRemote(force){const S2=unflat(lastF);if(!force&&sj(flat(S2))===sj(flat(S)))return;S=S2;rerender()}
+function onMsg(ev){let m;try{m=JSON.parse(ev.data)}catch(e){return}
+if(m.type==="snapshot"){if(AUTH&&m.authed===false){location.reload();return}lastF=m.docs||{};ready=true;retry=0;document.body.classList.remove("off");setSy("ok");applyRemote(true)}
+else if(m.type==="op"){if(m.cid===CID&&!m.force)return;if(m.data)lastF[m.id]=m.data;else delete lastF[m.id];if(m.by&&m.cid!==CID)notify(m.by,m.id);applyRemote()}
+else if(m.type==="rejected")toast("⚠ Une donnée a été refusée par le serveur",2600);
+else if(m.type==="denied")setSy("denied")}
+function startWS(){if(ws&&ws.readyState<2)return;clearTimeout(rcT);
+if(AUTH){document.body.classList.add("off");setSy("conn")}
+ws=new WebSocket((location.protocol==="https:"?"wss://":"ws://")+location.host+"/ws/sync/");
+ws.onmessage=onMsg;
+ws.onopen=()=>{clearInterval(hbT);hbT=setInterval(()=>send({type:"ping"}),25000)};
+ws.onclose=()=>{ready=false;clearInterval(hbT);if(AUTH){document.body.classList.add("off");setSy("off")}rcT=setTimeout(startWS,Math.min(1000*Math.pow(2,retry++),15000))};
+ws.onerror=()=>{try{ws.close()}catch(e){}}}
+document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"&&(!ws||ws.readyState>1))startWS()});
+addEventListener("online",()=>{if(!ws||ws.readyState>1)startWS()});
+function rerender(){
+if(tab==="pub"){const w=$("#pgw");if(w){w.innerHTML=progHTML();window.RV&&RV()}return}
+const a=document.activeElement;
+if((a&&main.contains(a)&&/^(INPUT|SELECT|TEXTAREA)$/.test(a.tagName)&&a.type!=="checkbox")||document.querySelector("dialog[open]")){stale=1;return}
+stale=0;const m={dash:vDash,serv:vServ,cal:vCal,prog:vProg,mess:vMess,bilan:vBilan,reu:vReu,droits:vDroits,cot:vCot,fiche:()=>fiche(FM),seance:()=>seance(RC)}[tab];if(m)m()}
+addEventListener("focusout",()=>{if(stale)setTimeout(rerender,400)});
+document.addEventListener("close",()=>{if(stale)setTimeout(rerender,150)},true);
+let TT;function toast(m,ms){const t=$("#toast");if(!t)return;t.textContent=m||"✓ Enregistré";t.classList.add("on");clearTimeout(TT);TT=setTimeout(()=>t.classList.remove("on"),ms||1100)}
+/* ===== Programme d'activités 2026-2027 ===== */
+const MOIS=["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"],CT={c:"Cours",l:"Liturgie",r:"Répétition",g:"Réunion",f:"Cérémonie",a:"Activité",i:"Intendance"},PL={PSFA:"Paroisse Saint François d’Assise"};
+const dd=(a,b)=>Math.round((new Date(a+"T12:00:00Z")-new Date(b+"T12:00:00Z"))/864e5);
+function postH(e){const t=new Date(e.d+"T12:00:00Z"),n=dd(e.d,today()),hot=n>=0&&n<=7,w=n===0?"Aujourd’hui":n===1?"Demain":n>1?"Dans "+n+" jours":"Passée";
+return`<article class="post${hot?" hot":""}"><div class="dt"><b>${t.getUTCDate()}</b><span>${MOIS[t.getUTCMonth()].slice(0,3)}.</span></div><div><span class="tag${hot?" hot":""}">${w}</span> <span class="tag">${CT[e.c]||"Information"}</span><h3>${esc(e.t)}</h3><p class="mu">${JR[t.getUTCDay()]} ${t.getUTCDate()} ${MOIS[t.getUTCMonth()]} ${t.getUTCFullYear()} · ${e.h?esc(e.h):"horaire à préciser"}${e.l?" · "+esc(PL[e.l]||e.l):""}</p></div>${AUTH?`<div class="pa"><button class="btn g" onclick="editA('${e.id}')" aria-label="Modifier">✏️</button></div>`:""}</article>`}
+function progHTML(){const P=PG(),T=today(),up=P.filter(e=>e.d>=T),past=P.filter(e=>e.d<T),wk=up.filter(e=>dd(e.d,T)<=7);
+let h=annHTML()+`<h2>${wk.length?"À la une · cette semaine":"Prochaine activité"}</h2>`+((wk.length?wk:up.slice(0,1)).map(postH).join("")||`<p class="mu">Aucune activité à venir.</p>`);
+h+=`<h2 id="pg">Programme complet 2026-2027</h2>`;let mo="";up.forEach(e=>{const t=new Date(e.d+"T12:00:00Z"),k=MOIS[t.getUTCMonth()]+" "+t.getUTCFullYear();if(k!==mo){mo=k;h+=`<h3 class="mo">${k}</h3>`}h+=postH(e)});
+if(past.length)h+=`<details class="card" style="margin-top:16px"><summary style="cursor:pointer;font-weight:700;min-height:40px;display:flex;align-items:center">Activités passées (${past.length})</summary>${past.slice().reverse().map(postH).join("")}</details>`;return h}
+function vProg(){main.innerHTML=`<h2>Programme d’activités · Année pastorale 2026-2027</h2><div class="tools"><button class="btn" onclick="editA()">＋ Activité</button><button class="btn" onclick="editN()">＋ Annonce</button><button class="btn g" onclick="window.print()">Imprimer</button></div>${progHTML()}`}
+function pubHome(){tab="pub";document.body.classList.add("pub");hdr();
+main.innerHTML=`<section class="hero"><small>Archidiocèse de Brazzaville · Conseil pastoral paroissial</small><h2>Groupe des servants d’autel</h2><p>Paroisse Saint François d’Assise</p><p><i>Piété · Pureté · Courage · Service</i> — Le Christ est vivant !</p><div class="tools"><button class="btn" onclick="document.getElementById('pg').scrollIntoView({behavior:'smooth'})">📅 Consulter le programme</button><button class="btn g" onclick="document.getElementById('ct').scrollIntoView({behavior:'smooth'})">✉️ Nous contacter</button><button class="btn g" onclick="openLogin()">🔒 Espace du bureau</button></div></section><div id="pgw">${progHTML()}</div>${contactHTML()}`;cfRender()}
+/* ===== Connexion du bureau (sessions Django) ===== */
+function hdr(){const b=$("#hb"),f=$("#ft");b.textContent=AUTH?"Déconnexion ("+AUTH.name+")":"🔒 Espace bureau";f.textContent=AUTH?"Données synchronisées en temps réel entre les membres du bureau. Trésorerie du GSM · Année pastorale 2026-2027":"Groupe des servants d’autel · Paroisse Saint François d’Assise · Tél. (+242) 06 600 56 25 / 06 683 52 77 / 06 932 35 62"}
+function hbClick(){AUTH?logout():openLogin()}
+function openLogin(){const d=$("#dlg");d.innerHTML=`<h2 style="margin-top:0">🔒 Espace du bureau</h2><p class="mu" style="margin-top:0">Réservé aux membres du bureau exécutif.</p><label>Nom d’utilisateur</label><input id="lu" autocomplete="username" autocapitalize="none"><label>Mot de passe</label><input id="lp" type="password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"><label style="display:flex;gap:10px;align-items:center;margin-top:10px"><input type="checkbox" onchange="$('#lp').type=this.checked?'text':'password'"> Afficher le mot de passe</label><p id="le" class="no" style="min-height:20px;margin:8px 0 0"></p><div class="acts"><button class="btn g" onclick="$('#dlg').close()">Annuler</button><button class="btn" id="lb" onclick="doLogin()">Se connecter</button></div>`;d.showModal();setTimeout(()=>{const u=$("#lu");u&&u.focus()},60)}
+async function doLogin(){const u=$("#lu").value.trim(),p=$("#lp").value,e=$("#le"),b=$("#lb");e.textContent="";
+if(!u||!p){e.textContent="Renseignez le nom d’utilisateur et le mot de passe.";return}
+b.disabled=true;try{const r=await fetch("/api/login/",{method:"POST",credentials:"same-origin",headers:{"Content-Type":"application/json","X-CSRFToken":GSM.csrf},body:JSON.stringify({username:u,password:p})});
+if(r.ok){try{sessionStorage.setItem("gsm-ns",1)}catch(x){}location.reload();return}
+const j=await r.json().catch(()=>({}));e.textContent=j.error||"Connexion impossible."}catch(x){e.textContent="Réseau indisponible. Réessayez."}b.disabled=false}
+async function logout(){try{await fetch("/api/logout/",{method:"POST",credentials:"same-origin",headers:{"X-CSRFToken":GSM.csrf}})}catch(e){}try{sessionStorage.setItem("gsm-ns",1)}catch(e){}location.reload()}
+/* ===== Programme modifiable, annonces, contact WhatsApp ===== */
+const PG=()=>{S.prog=S.prog||[];return S.prog.slice().sort((a,b)=>a.d<b.d?-1:a.d>b.d?1:(a.h||"")<(b.h||"")?-1:1)};
+const fdm=d=>{const t=new Date(d+"T12:00:00Z");return t.getUTCDate()+" "+MOIS[t.getUTCMonth()].slice(0,3)+"."};
+const refreshP=()=>tab==="pub"?pubHome():vProg();
+function annHTML(){const T=today(),L=(S.ann||[]).filter(a=>!a.x||a.x>=T).sort((a,b)=>(b.i?1:0)-(a.i?1:0)||(a.d<b.d?1:a.d>b.d?-1:0));if(!L.length)return"";
+return`<h2>📢 Annonces</h2>`+L.map(a=>`<article class="post ann${a.i?" imp":""}"><div class="dt"><b>${a.i?"❗":"📢"}</b><span>${fdm(a.d)}</span></div><div>${a.i?'<span class="tag hot">Important</span> ':""}<h3>${esc(a.t)}</h3><p>${esc(a.m).replace(/\n/g,"<br>")}</p><p class="mu" style="margin-top:6px">Publiée le ${fd(a.d)}${a.x?" · valable jusqu’au "+fd(a.x):""}</p></div><div class="pa">${AUTH?`<button class="btn g" onclick="editN('${a.id}')" aria-label="Modifier">✏️</button>`:""}<button class="btn g" onclick="shareA('${a.id}')" aria-label="Partager sur WhatsApp">🟢</button></div></article>`).join("")}
+function shareA(id){const a=S.ann.find(x=>x.id===id);if(!a)return;window.open("https://wa.me/?text="+encodeURIComponent("📢 *"+a.t+"*\n"+a.m+"\n\n— Servants d’autel · Paroisse Saint François d’Assise"),"_blank")}
+function editA(id){PG();const e=id?S.prog.find(x=>x.id===id):{d:today(),t:"",h:"",c:"c",l:"PSFA"},d=$("#dlg");if(!e)return;
+d.innerHTML=`<h2 style="margin-top:0">${id?"Modifier":"Nouvelle"} activité</h2><label>Date</label><input id="ad" type="date" value="${e.d}"><label>Intitulé</label><input id="at" value="${esc(e.t)}" placeholder="Ex. Cours théoriques et pratiques"><label>Horaire (facultatif)</label><input id="ah" value="${esc(e.h)}" placeholder="12h00 – 13h30"><label>Catégorie</label><select id="ak">${Object.keys(CT).map(k=>`<option value="${k}" ${e.c===k?"selected":""}>${CT[k]}</option>`).join("")}<option value="" ${e.c?"":"selected"}>Information</option></select><label>Lieu (facultatif)</label><input id="al" value="${esc(e.l)}" placeholder="PSFA"><div class="acts">${id?`<button class="btn r" id="adl" onclick="delA('${id}')">Supprimer</button>`:""}<button class="btn g" onclick="$('#dlg').close()">Annuler</button><button class="btn" onclick="saveA('${id||""}')">Enregistrer</button></div>`;d.showModal()}
+function saveA(id){const d=$("#ad").value,t=$("#at").value.trim();if(!d||!t){toast("⚠ Date et intitulé requis");return}const v={d,t,h:$("#ah").value.trim(),c:$("#ak").value,l:$("#al").value.trim()};
+if(id)Object.assign(S.prog.find(x=>x.id===id),v);else S.prog.push({id:"a"+Date.now(),...v});save();$("#dlg").close();refreshP()}
+function delA(id){const b=$("#adl");if(!b.dataset.c){b.dataset.c=1;b.textContent="Confirmer ?";return}S.prog=S.prog.filter(x=>x.id!==id);save();$("#dlg").close();refreshP()}
+function editN(id){const e=id?S.ann.find(x=>x.id===id):{t:"",m:"",i:0,x:""},d=$("#dlg");if(!e)return;
+d.innerHTML=`<h2 style="margin-top:0">${id?"Modifier":"Nouvelle"} annonce</h2><label>Titre</label><input id="nt2" value="${esc(e.t)}" placeholder="Ex. Changement d’horaire des cours"><label>Message</label><textarea id="nm3" rows="5">${esc(e.m)}</textarea><label>Valable jusqu’au (facultatif)</label><input id="nx" type="date" value="${e.x||""}"><label style="display:flex;gap:10px;align-items:center;margin-top:12px"><input id="ni" type="checkbox" ${e.i?"checked":""} style="width:24px;height:24px;min-height:0"> Annonce importante (mise en avant)</label><div class="acts">${id?`<button class="btn r" id="ndl" onclick="delN('${id}')">Supprimer</button>`:""}<button class="btn g" onclick="$('#dlg').close()">Annuler</button><button class="btn" onclick="saveN('${id||""}')">Publier</button></div>`;d.showModal()}
+function saveN(id){const t=$("#nt2").value.trim(),m=$("#nm3").value.trim();if(!t||!m){toast("⚠ Titre et message requis");return}const v={t,m,i:$("#ni").checked?1:0,x:$("#nx").value};
+if(id)Object.assign(S.ann.find(x=>x.id===id),v);else S.ann.push({id:"n"+Date.now(),d:today(),...v});save();$("#dlg").close();refreshP()}
+function delN(id){const b=$("#ndl");if(!b.dataset.c){b.dataset.c=1;b.textContent="Confirmer ?";return}S.ann=S.ann.filter(x=>x.id!==id);save();$("#dlg").close();refreshP()}
+function setWa(){const v=$("#wan").value.replace(/\D/g,"");if(v.length<8){alert("Numéro invalide.");return}S.cfg=S.cfg||{};S.cfg.wa=v;save()}
+const CF={msg:{t:"✉️ Message",h:"Message au bureau",f:[["n","Votre nom"],["p","Votre téléphone (facultatif)","tel"],["o","Objet","sel",["Renseignement","Suggestion","Autre demande"]],["m","Votre message","ta"]]},
+ins:{t:"📝 Inscription",h:"Demande d’inscription d’un servant",f:[["n","Nom et prénoms de l’enfant"],["a","Âge","number"],["pa","Nom du parent ou tuteur"],["p","Téléphone du parent","tel"],["m","Remarque (facultatif)","ta"]]},
+abs:{t:"🗓️ Absence",h:"Excuse d’absence",f:[["n","Nom du servant"],["d","Date concernée","date"],["r","Motif","ta"],["p","Votre nom et téléphone"]]}};
+let CFT="msg";
+const contactHTML=()=>`<h2 id="ct">📞 Nous contacter</h2><div class="card cf" id="cfw"></div><div class="tools"><a class="btn g" href="tel:+242066005625">📞 06 600 56 25</a><a class="btn g" href="tel:+242066835277">📞 06 683 52 77</a><a class="btn g" href="tel:+242069323562">📞 06 932 35 62</a></div>`;
+function cfRender(){const w=$("#cfw");if(!w)return;const c=CF[CFT];
+w.innerHTML=`<div class="tools" style="margin-top:0">${Object.keys(CF).map(k=>`<button class="btn ${k===CFT?"":"g"}" onclick="CFT='${k}';cfRender()">${CF[k].t}</button>`).join("")}</div>${c.f.map(([k,l,t,o])=>`<label>${l}</label>`+(t==="ta"?`<textarea id="cf_${k}" rows="4"></textarea>`:t==="sel"?`<select id="cf_${k}">${o.map(x=>`<option>${x}</option>`).join("")}</select>`:`<input id="cf_${k}" type="${t||"text"}"${t==="tel"?' inputmode="tel"':""}>`)).join("")}<button class="btn wa" onclick="sendWA()">🟢 Envoyer par WhatsApp</button><p class="mu" style="margin:10px 0 0;font-size:13px">WhatsApp s’ouvre avec votre message prêt à envoyer au bureau : il vous reste à appuyer sur « Envoyer ».</p>`}
+function sendWA(){const c=CF[CFT];let ok=1;const L=["*"+c.h+"*"];
+c.f.forEach(([k,l])=>{const e=$("#cf_"+k),v=e.value.trim();if(!v&&!/facultatif/i.test(l)){ok=0;e.classList.remove("shake");void e.offsetWidth;e.classList.add("shake")}if(v)L.push(l.replace(/ \(facultatif\)/i,"")+" : "+v)});
+if(!ok){toast("⚠ Remplissez les champs requis");return}
+L.push("","— Envoyé depuis l’appli des servants d’autel (PSFA)");window.open("https://wa.me/"+((S.cfg&&S.cfg.wa)||"242066005625")+"?text="+encodeURIComponent(L.join("\n")),"_blank")}
+/* ===== Animations ===== */
+(()=>{const B=document.body,sp=$("#sp");let ns=0;try{ns=sessionStorage.getItem("gsm-ns");sessionStorage.removeItem("gsm-ns")}catch(e){}
+if(sp&&ns){sp.remove();B.classList.remove("sp")}else if(sp){const sm=$("#spm"),pc=$("#spp"),bi=$("#spi"),Z=$("#sps"),M=["Ouverture de l’espace des servants…","Préparation du programme d’activités…","Chargement des annonces…","Que la paix du Christ soit avec vous !"];
+for(let i=0;i<22;i++){const x=document.createElement("i"),z=1+Math.random()*2.5;x.className="stz";x.style.cssText="left:"+Math.random()*100+"%;top:"+Math.random()*100+"%;width:"+z+"px;height:"+z+"px;animation-delay:"+(Math.random()*3).toFixed(2)+"s;animation-duration:"+(2.5+Math.random()*2).toFixed(1)+"s";Z.appendChild(x)}
+let lm=-1;const t0=performance.now();(function f(t){const k=Math.min(1,(t-t0)/7000),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2,m=Math.min(M.length-1,Math.floor(k*M.length));
+pc.textContent=Math.round(e*100)+"%";bi.style.transform="scaleX("+e+")";if(m!==lm){lm=m;sm.textContent=M[m];sm.style.animation="none";void sm.offsetWidth;sm.style.animation=""}if(k<1&&document.getElementById("sp"))requestAnimationFrame(f)})(t0)}
+setTimeout(()=>sp&&sp.remove(),8300);setTimeout(()=>B.classList.remove("sp"),9000);
+document.addEventListener("pointerdown",e=>{const b=e.target.closest&&e.target.closest(".btn,.pay");if(!b||b.disabled)return;const r=b.getBoundingClientRect(),z=Math.max(r.width,r.height),x=document.createElement("span");x.className="rp";x.style.cssText="width:"+z+"px;height:"+z+"px;left:"+(e.clientX-r.left-z/2)+"px;top:"+(e.clientY-r.top-z/2)+"px";b.appendChild(x);setTimeout(()=>x.remove(),600)});
+const cnt=e=>{const b=e.matches(".card")?e.querySelector(":scope>b"):null;if(!b||!/^\d+$/.test(b.textContent))return;const n=+b.textContent,t0=performance.now();(function f(t){const k=Math.min(1,(t-t0)/800);b.textContent=Math.round(n*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(t0)};
+const IO="IntersectionObserver" in window?new IntersectionObserver(es=>{let k=0;es.forEach(x=>{if(!x.isIntersecting)return;const e=x.target;IO.unobserve(e);setTimeout(()=>{e.classList.add("in");cnt(e)},Math.min(k++,6)*80)})},{threshold:.1,rootMargin:"0px 0px -5% 0px"}):null;
+const rv=()=>document.querySelectorAll("main .post:not(.rv),main h3.mo:not(.rv),main .grid:not(#sm)>.card:not(.rv),main>h2:not(.rv),main .cf:not(.rv)").forEach(e=>{e.classList.add("rv");if(!IO){e.classList.add("in");return}B.classList.contains("sp")?setTimeout(()=>IO.observe(e),7400):IO.observe(e)});
+window.RV=rv;new MutationObserver(()=>{main.classList.remove("pg");void main.offsetWidth;main.classList.add("pg");rv()}).observe(main,{childList:true});
+const bar=$("#spg");addEventListener("scroll",()=>{const h=document.documentElement,m=h.scrollHeight-h.clientHeight;bar.style.transform="scaleX("+(m>0?h.scrollTop/m:0)+")"},{passive:true})})();
+(()=>{if(AUTH){document.body.classList.remove("pub");hdr();go(RTS.includes(location.hash.slice(1))?location.hash.slice(1):"dash")}else pubHome();startWS()})();
+</script></body></html>

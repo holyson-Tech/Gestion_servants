@@ -1,0 +1,904 @@
+{
+"s_AS01": {
+"t": "s",
+"m": "AS01",
+"n": "BACKOKASSA Ris Bonheur",
+"s": "F",
+"l": "Aspirant2"
+},
+"s_AS02": {
+"t": "s",
+"m": "AS02",
+"n": "BAMIKA Antonie Davielle",
+"s": "F",
+"l": "Aspirant2"
+},
+"s_AS03": {
+"t": "s",
+"m": "AS03",
+"n": "BANDA Remy",
+"s": "M",
+"l": "Aspirant2"
+},
+"s_AC01": {
+"t": "s",
+"m": "AC01",
+"n": "BATOLA Christ",
+"s": "M",
+"l": "Acolyte"
+},
+"s_AS04": {
+"t": "s",
+"m": "AS04",
+"n": "BIANZEMBI AngeEspoir",
+"s": "M",
+"l": "Aspirant2"
+},
+"s_AS05": {
+"t": "s",
+"m": "AS05",
+"n": "BIANZEMBI Exhaucée",
+"s": "F",
+"l": "Aspirant2"
+},
+"s_AS06": {
+"t": "s",
+"m": "AS06",
+"n": "BOMBI Pierre Anaïs",
+"s": "F",
+"l": "Aspirant2"
+},
+"s_AS07": {
+"t": "s",
+"m": "AS07",
+"n": "BOUKAKA Gerda Bienvenu",
+"s": "F",
+"l": "Aspirant2"
+},
+"s_AC02": {
+"t": "s",
+"m": "AC02",
+"n": "BOUNGOU Marcel",
+"s": "M",
+"l": "Acolyte"
+},
+"s_CF1": {
+"t": "s",
+"m": "CF1",
+"n": "ETOUMBI Aniel Valery Emmanuel",
+"s": "M",
+"l": "Céroféraire"
+},
+"s_CF2": {
+"t": "s",
+"m": "CF2",
+"n": "ETOUMBI Ariel Jacques Durhan",
+"s": "M",
+"l": "Céroféraire"
+},
+"s_AS08": {
+"t": "s",
+"m": "AS08",
+"n": "FOUTOU Rayan",
+"s": "M",
+"l": "Aspirant2"
+},
+"s_CR1": {
+"t": "s",
+"m": "CR1",
+"n": "KANZA Ariel Marie Jérémie Henri",
+"s": "M",
+"l": "Cérémoniaire"
+},
+"s_CR2": {
+"t": "s",
+"m": "CR2",
+"n": "KIGNOUMBI KIAMBOUGOU Joseph",
+"s": "M",
+"l": "Cérémoniaire"
+},
+"s_AC03": {
+"t": "s",
+"m": "AC03",
+"n": "KINGOUARI Excellent",
+"s": "M",
+"l": "Acolyte"
+},
+"s_CF3": {
+"t": "s",
+"m": "CF3",
+"n": "KINKANI Amour",
+"s": "M",
+"l": "Céroféraire"
+},
+"s_AS09": {
+"t": "s",
+"m": "AS09",
+"n": "KOKO Victoire",
+"s": "M",
+"l": "Aspirant2"
+},
+"s_CR3": {
+"t": "s",
+"m": "CR3",
+"n": "KOUKA Aristide",
+"s": "M",
+"l": "Cérémoniaire"
+},
+"s_CF4": {
+"t": "s",
+"m": "CF4",
+"n": "KOUMBADIAGA Arnel",
+"s": "M",
+"l": "Céroféraire"
+},
+"s_AS10": {
+"t": "s",
+"m": "AS10",
+"n": "LELEMBE Reine",
+"s": "F",
+"l": "Aspirant2"
+},
+"s_CR4": {
+"t": "s",
+"m": "CR4",
+"n": "LOUBAKY ISSONGO Gad Palmonde",
+"s": "M",
+"l": "Cérémoniaire"
+},
+"s_CF5": {
+"t": "s",
+"m": "CF5",
+"n": "LOUBASSOU Miche lBenny",
+"s": "M",
+"l": "Céroféraire"
+},
+"s_CF6": {
+"t": "s",
+"m": "CF6",
+"n": "LOUFOUA Jade Marie Allysone",
+"s": "F",
+"l": "Céroféraire"
+},
+"s_AS11": {
+"t": "s",
+"m": "AS11",
+"n": "MALONGA David Grâce Benjamin",
+"s": "M",
+"l": "Aspirant2"
+},
+"s_TR1": {
+"t": "s",
+"m": "TR1",
+"n": "MALONGA Remy Messi",
+"s": "M",
+"l": "Thuriféraire2"
+},
+"s_AC04": {
+"t": "s",
+"m": "AC04",
+"n": "MAMPOUYA MBAMA Ella Coly Patricia",
+"s": "F",
+"l": "Acolyte"
+},
+"s_TR2": {
+"t": "s",
+"m": "TR2",
+"n": "MANDOUNOU Serge Holyson",
+"s": "M",
+"l": "Thuriféraire2"
+},
+"s_TR3": {
+"t": "s",
+"m": "TR3",
+"n": "MANKEDI Uriel Lilian",
+"s": "M",
+"l": "Thuriféraire2"
+},
+"s_CF7": {
+"t": "s",
+"m": "CF7",
+"n": "MATEKY Docile",
+"s": "M",
+"l": "Céroféraire"
+},
+"s_AS12": {
+"t": "s",
+"m": "AS12",
+"n": "MATINGOU Jeannelle",
+"s": "F",
+"l": "Aspirant2"
+},
+"s_AS13": {
+"t": "s",
+"m": "AS13",
+"n": "MAYINGUIDI Japhet",
+"s": "M",
+"l": "Aspirant2"
+},
+"s_CR5": {
+"t": "s",
+"m": "CR5",
+"n": "MBASSOULOU Norris Turcey Van",
+"s": "M",
+"l": "Cérémoniaire"
+},
+"s_AS14": {
+"t": "s",
+"m": "AS14",
+"n": "MBEMBA NTABALA Joseph",
+"s": "M",
+"l": "Aspirant2"
+},
+"s_CF8": {
+"t": "s",
+"m": "CF8",
+"n": "MBEMBA NTABALA Josué",
+"s": "M",
+"l": "Céroféraire"
+},
+"s_AC05": {
+"t": "s",
+"m": "AC05",
+"n": "MBERI Eden Claudel",
+"s": "M",
+"l": "Acolyte"
+},
+"s_CF17": {
+"t": "s",
+"m": "CF17",
+"n": "MBOUKA KOKOLO Thiecess Champion",
+"s": "M",
+"l": "Céroféraire"
+},
+"s_CF9": {
+"t": "s",
+"m": "CF9",
+"n": "MBOUKOU Exaucé_Mondésir Merveil",
+"s": "M",
+"l": "Céroféraire"
+},
+"s_AS15": {
+"t": "s",
+"m": "AS15",
+"n": "Mieré Ngapio Franck Emmanuelle",
+"s": "M",
+"l": "Aspirant2"
+},
+"s_AS16": {
+"t": "s",
+"m": "AS16",
+"n": "MILANDOU Casimir",
+"s": "M",
+"l": "Aspirant2"
+},
+"s_TR4": {
+"t": "s",
+"m": "TR4",
+"n": "MISSIDI BATINA Dulcinet",
+"s": "M",
+"l": "Thuriféraire2"
+},
+"s_CF10": {
+"t": "s",
+"m": "CF10",
+"n": "MITHOU KOKO Kimia Georgina Sublimes",
+"s": "F",
+"l": "Céroféraire"
+},
+"s_CF11": {
+"t": "s",
+"m": "CF11",
+"n": "MITHOU KOKO Léo Moumiah Josaphat",
+"s": "M",
+"l": "Céroféraire"
+},
+"s_CF12": {
+"t": "s",
+"m": "CF12",
+"n": "MITHOU KOKO Véronica Tiphèret Haziel",
+"s": "F",
+"l": "Céroféraire"
+},
+"s_AS17": {
+"t": "s",
+"m": "AS17",
+"n": "MOUSSITOU François Xavier",
+"s": "M",
+"l": "Aspirant2"
+},
+"s_CF13": {
+"t": "s",
+"m": "CF13",
+"n": "MPACKA MOUTOU Julie",
+"s": "F",
+"l": "Céroféraire"
+},
+"s_AC06": {
+"t": "s",
+"m": "AC06",
+"n": "NANDI Espoir",
+"s": "M",
+"l": "Acolyte"
+},
+"s_AC07": {
+"t": "s",
+"m": "AC07",
+"n": "NDOULI Cécilia Olive",
+"s": "F",
+"l": "Acolyte"
+},
+"s_AC08": {
+"t": "s",
+"m": "AC08",
+"n": "NDOULI Don_ChrisGuy Précieux",
+"s": "M",
+"l": "Acolyte"
+},
+"s_AC09": {
+"t": "s",
+"m": "AC09",
+"n": "NGANGA KOUSSALOUKA Rinhelle",
+"s": "F",
+"l": "Acolyte"
+},
+"s_CF14": {
+"t": "s",
+"m": "CF14",
+"n": "NGANGA NZIMBOU Louis Joffrey-Christ",
+"s": "M",
+"l": "Céroféraire"
+},
+"s_AC10": {
+"t": "s",
+"m": "AC10",
+"n": "NGOMO KOUMONA Pascal Samuel",
+"s": "M",
+"l": "Acolyte"
+},
+"s_AC11": {
+"t": "s",
+"m": "AC11",
+"n": "NSONDE Prince",
+"s": "M",
+"l": "Acolyte"
+},
+"s_CF15": {
+"t": "s",
+"m": "CF15",
+"n": "NZANDA Julvin Riane Parfait",
+"s": "M",
+"l": "Céroféraire"
+},
+"s_AC12": {
+"t": "s",
+"m": "AC12",
+"n": "NZINGOULA Melchi Jean Sergio",
+"s": "M",
+"l": "Acolyte"
+},
+"s_AS18": {
+"t": "s",
+"m": "AS18",
+"n": "NZOUTANIE TEHILLAH",
+"s": "M",
+"l": "Aspirant2"
+},
+"s_AS19": {
+"t": "s",
+"m": "AS19",
+"n": "SITA Chloé Jael Grace",
+"s": "F",
+"l": "Aspirant2"
+},
+"s_AS20": {
+"t": "s",
+"m": "AS20",
+"n": "SITA Dav Gerard",
+"s": "M",
+"l": "Aspirant2"
+},
+"s_AS21": {
+"t": "s",
+"m": "AS21",
+"n": "SITA Rony Master Grace",
+"s": "M",
+"l": "Aspirant2"
+},
+"s_AC13": {
+"t": "s",
+"m": "AC13",
+"n": "SOUKIKA Eunice",
+"s": "F",
+"l": "Acolyte"
+},
+"s_AC14": {
+"t": "s",
+"m": "AC14",
+"n": "SOUKIKA Oracle",
+"s": "F",
+"l": "Acolyte"
+},
+"s_CF16": {
+"t": "s",
+"m": "CF16",
+"n": "WENAM",
+"s": "M",
+"l": "Céroféraire"
+},
+"s_AS22": {
+"t": "s",
+"m": "AS22",
+"n": "ZOBA MBILA Marc",
+"s": "M",
+"l": "Aspirant2"
+},
+"g_p0": {
+"t": "g",
+"id": "p0",
+"d": "2026-10-25",
+"ti": "Assemblée générale",
+"h": "12h00 – 14h00",
+"c": "g",
+"l": "PSFA"
+},
+"g_p1": {
+"t": "g",
+"id": "p1",
+"d": "2026-11-01",
+"ti": "Début des cours de tous les niveaux",
+"h": "12h00 – 13h30",
+"c": "c",
+"l": "PSFA"
+},
+"g_p2": {
+"t": "g",
+"id": "p2",
+"d": "2026-11-08",
+"ti": "Pas d’activités en paroisse",
+"h": "",
+"c": "",
+"l": "PSFA"
+},
+"g_p3": {
+"t": "g",
+"id": "p3",
+"d": "2026-11-15",
+"ti": "Cours théoriques et pratiques",
+"h": "12h00 – 13h30",
+"c": "c",
+"l": "PSFA"
+},
+"g_p4": {
+"t": "g",
+"id": "p4",
+"d": "2026-11-22",
+"ti": "Cours théoriques et pratiques",
+"h": "12h00 – 13h30",
+"c": "c",
+"l": "PSFA"
+},
+"g_p5": {
+"t": "g",
+"id": "p5",
+"d": "2026-11-22",
+"ti": "Solennité du Christ, Roi de l’univers",
+"h": "Messes à 8h00 et 10h00",
+"c": "l",
+"l": "PSFA"
+},
+"g_p6": {
+"t": "g",
+"id": "p6",
+"d": "2026-12-06",
+"ti": "Évaluation des servants de messe",
+"h": "12h00 – 13h30",
+"c": "c",
+"l": "PSFA"
+},
+"g_p7": {
+"t": "g",
+"id": "p7",
+"d": "2026-12-13",
+"ti": "Répétitions de Noël",
+"h": "12h00 – 14h30",
+"c": "r",
+"l": "PSFA"
+},
+"g_p8": {
+"t": "g",
+"id": "p8",
+"d": "2026-12-20",
+"ti": "Répétitions de Noël",
+"h": "12h00 – 14h30",
+"c": "r",
+"l": "PSFA"
+},
+"g_p9": {
+"t": "g",
+"id": "p9",
+"d": "2026-12-21",
+"ti": "Lavage des aubes",
+"h": "",
+"c": "i",
+"l": ""
+},
+"g_p10": {
+"t": "g",
+"id": "p10",
+"d": "2026-12-23",
+"ti": "Repassage des aubes et répétitions de Noël",
+"h": "07h00 – 14h00",
+"c": "r",
+"l": "PSFA"
+},
+"g_p11": {
+"t": "g",
+"id": "p11",
+"d": "2026-12-24",
+"ti": "Nuit de la Nativité du Seigneur : messe",
+"h": "",
+"c": "l",
+"l": "PSFA"
+},
+"g_p12": {
+"t": "g",
+"id": "p12",
+"d": "2026-12-25",
+"ti": "Jour de Noël",
+"h": "Messes à 8h00 et 10h00",
+"c": "l",
+"l": "PSFA"
+},
+"g_p13": {
+"t": "g",
+"id": "p13",
+"d": "2026-12-27",
+"ti": "La Sainte Famille de Jésus, Marie et Joseph (fête) : messe",
+"h": "Messes à 8h00 et 10h00",
+"c": "l",
+"l": "PSFA"
+},
+"g_p14": {
+"t": "g",
+"id": "p14",
+"d": "2026-12-31",
+"ti": "Veillée de prière : messe",
+"h": "",
+"c": "l",
+"l": "PSFA"
+},
+"g_p15": {
+"t": "g",
+"id": "p15",
+"d": "2027-01-01",
+"ti": "Jour de l’An : messe",
+"h": "8h00",
+"c": "l",
+"l": "PSFA"
+},
+"g_p16": {
+"t": "g",
+"id": "p16",
+"d": "2027-01-03",
+"ti": "Épiphanie du Seigneur",
+"h": "",
+"c": "l",
+"l": "PSFA"
+},
+"g_p17": {
+"t": "g",
+"id": "p17",
+"d": "2027-01-03",
+"ti": "Prière communautaire et cours pratiques",
+"h": "12h00 – 13h30",
+"c": "c",
+"l": "PSFA"
+},
+"g_p18": {
+"t": "g",
+"id": "p18",
+"d": "2027-01-17",
+"ti": "Réunion d’ensemble du groupe avec les parents des servants de messe",
+"h": "12h00 – 14h00",
+"c": "g",
+"l": "PSFA"
+},
+"g_p19": {
+"t": "g",
+"id": "p19",
+"d": "2027-01-24",
+"ti": "Répétitions de la cérémonie de prise d’aube et de promesse",
+"h": "12h00 – 14h30",
+"c": "r",
+"l": "PSFA"
+},
+"g_p20": {
+"t": "g",
+"id": "p20",
+"d": "2027-01-31",
+"ti": "Répétitions de la cérémonie de prise d’aube et de promesse",
+"h": "12h00 – 14h30",
+"c": "r",
+"l": "PSFA"
+},
+"g_p21": {
+"t": "g",
+"id": "p21",
+"d": "2027-02-02",
+"ti": "Présentation du Seigneur",
+"h": "Messes à 8h00 et 10h00",
+"c": "l",
+"l": "PSFA"
+},
+"g_p22": {
+"t": "g",
+"id": "p22",
+"d": "2027-02-02",
+"ti": "Répétitions de la cérémonie de prise d’aube et de promesse",
+"h": "12h00 – 14h00",
+"c": "r",
+"l": "PSFA"
+},
+"g_p23": {
+"t": "g",
+"id": "p23",
+"d": "2027-02-06",
+"ti": "Retraite préparatoire à la cérémonie de prise d’aube",
+"h": "09h00 – 15h30",
+"c": "f",
+"l": "PSFA"
+},
+"g_p24": {
+"t": "g",
+"id": "p24",
+"d": "2027-02-07",
+"ti": "Cérémonie de prise d’aube et de promesse des nouveaux servants de messe",
+"h": "Messe de 10h00",
+"c": "f",
+"l": "PSFA"
+},
+"g_p25": {
+"t": "g",
+"id": "p25",
+"d": "2027-02-10",
+"ti": "Mercredi des Cendres : messes",
+"h": "6h30 et 17h00",
+"c": "l",
+"l": "PSFA"
+},
+"g_p26": {
+"t": "g",
+"id": "p26",
+"d": "2027-02-21",
+"ti": "Répétitions de la Semaine sainte",
+"h": "12h00 – 14h30",
+"c": "r",
+"l": "PSFA"
+},
+"g_p27": {
+"t": "g",
+"id": "p27",
+"d": "2027-02-28",
+"ti": "Répétitions de la Semaine sainte",
+"h": "12h00 – 14h30",
+"c": "r",
+"l": "PSFA"
+},
+"g_p28": {
+"t": "g",
+"id": "p28",
+"d": "2027-03-07",
+"ti": "Répétitions de la Semaine sainte",
+"h": "12h00 – 14h30",
+"c": "r",
+"l": "PSFA"
+},
+"g_p29": {
+"t": "g",
+"id": "p29",
+"d": "2027-03-14",
+"ti": "Répétitions de la Semaine sainte",
+"h": "12h00 – 14h30",
+"c": "r",
+"l": "PSFA"
+},
+"g_p30": {
+"t": "g",
+"id": "p30",
+"d": "2027-03-21",
+"ti": "Répétitions de la Semaine sainte",
+"h": "12h00 – 14h30",
+"c": "r",
+"l": "PSFA"
+},
+"g_p31": {
+"t": "g",
+"id": "p31",
+"d": "2027-03-21",
+"ti": "Dimanche des Rameaux",
+"h": "Messes à 8h00 et 10h00",
+"c": "l",
+"l": "PSFA"
+},
+"g_p32": {
+"t": "g",
+"id": "p32",
+"d": "2027-03-21",
+"ti": "Prière communautaire et répétitions de la Semaine sainte",
+"h": "12h00 – 15h00",
+"c": "r",
+"l": "PSFA"
+},
+"g_p33": {
+"t": "g",
+"id": "p33",
+"d": "2027-03-22",
+"ti": "Lavage des aubes",
+"h": "07h00 – 13h00",
+"c": "i",
+"l": "PSFA"
+},
+"g_p34": {
+"t": "g",
+"id": "p34",
+"d": "2027-03-24",
+"ti": "Repassage et dernières répétitions de la Semaine sainte",
+"h": "09h00 – 15h30",
+"c": "r",
+"l": "PSFA"
+},
+"g_p35": {
+"t": "g",
+"id": "p35",
+"d": "2027-03-25",
+"ti": "Jeudi Saint : Cène du Seigneur",
+"h": "",
+"c": "l",
+"l": "PSFA"
+},
+"g_p36": {
+"t": "g",
+"id": "p36",
+"d": "2027-03-26",
+"ti": "Vendredi Saint : office de la Passion du Christ",
+"h": "",
+"c": "l",
+"l": "PSFA"
+},
+"g_p37": {
+"t": "g",
+"id": "p37",
+"d": "2027-03-27",
+"ti": "Samedi Saint : Veillée pascale",
+"h": "",
+"c": "l",
+"l": "PSFA"
+},
+"g_p38": {
+"t": "g",
+"id": "p38",
+"d": "2027-03-28",
+"ti": "Solennité de Pâques (pas de cours)",
+"h": "Messes à 8h00 et 10h00",
+"c": "l",
+"l": "PSFA"
+},
+"g_p39": {
+"t": "g",
+"id": "p39",
+"d": "2027-03-29",
+"ti": "Lundi de Pâques : activité culturelle",
+"h": "",
+"c": "a",
+"l": "A déterminer"
+},
+"g_p40": {
+"t": "g",
+"id": "p40",
+"d": "2027-04-04",
+"ti": "Prière communautaire et cours théoriques / pratiques",
+"h": "12h00 – 13h30",
+"c": "c",
+"l": "PSFA"
+},
+"g_p41": {
+"t": "g",
+"id": "p41",
+"d": "2027-05-01",
+"ti": "Activité culturelle",
+"h": "",
+"c": "a",
+"l": "A déterminer"
+},
+"g_p42": {
+"t": "g",
+"id": "p42",
+"d": "2027-05-02",
+"ti": "Dernières séances de cours théoriques / pratiques",
+"h": "12h00 – 13h30",
+"c": "c",
+"l": "PSFA"
+},
+"g_p43": {
+"t": "g",
+"id": "p43",
+"d": "2027-05-06",
+"ti": "Messe de l’Ascension du Seigneur",
+"h": "8h00",
+"c": "l",
+"l": "PSFA"
+},
+"g_p44": {
+"t": "g",
+"id": "p44",
+"d": "2027-05-09",
+"ti": "Dernières séances de cours théoriques / pratiques",
+"h": "12h00 – 13h30",
+"c": "c",
+"l": "PSFA"
+},
+"g_p45": {
+"t": "g",
+"id": "p45",
+"d": "2027-05-16",
+"ti": "Dernières séances de cours théoriques / pratiques",
+"h": "12h00 – 13h30",
+"c": "c",
+"l": "PSFA"
+},
+"g_p46": {
+"t": "g",
+"id": "p46",
+"d": "2027-05-16",
+"ti": "Fête de Pentecôte et révision générale",
+"h": "12h00 – 13h30",
+"c": "c",
+"l": "PSFA"
+},
+"g_p47": {
+"t": "g",
+"id": "p47",
+"d": "2027-05-17",
+"ti": "Lundi de Pentecôte : activité sportive",
+"h": "08h00 – 13h00",
+"c": "a",
+"l": ""
+},
+"g_p48": {
+"t": "g",
+"id": "p48",
+"d": "2027-05-23",
+"ti": "Dernières séances de cours théoriques / pratiques",
+"h": "12h00 – 13h30",
+"c": "c",
+"l": "PSFA"
+},
+"g_p49": {
+"t": "g",
+"id": "p49",
+"d": "2027-05-30",
+"ti": "Dernières séances de cours théoriques / pratiques",
+"h": "12h00 – 13h30",
+"c": "c",
+"l": "PSFA"
+},
+"g_p50": {
+"t": "g",
+"id": "p50",
+"d": "2027-05-30",
+"ti": "Réunion de fin d’année",
+"h": "12h00 – 14h30",
+"c": "g",
+"l": "PSFA"
+},
+"g_p51": {
+"t": "g",
+"id": "p51",
+"d": "2027-06-13",
+"ti": "Messe d’action de grâce du groupe des servants de messe",
+"h": "Messe de 10h00",
+"c": "l",
+"l": "PSFA"
+}
+}
